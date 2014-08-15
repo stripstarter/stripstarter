@@ -44,6 +44,7 @@ namespace :deploy do
 
   task :symlink_config, roles: :app do
     run "ln -nfs /var/www/stripstarter.us/shared/config/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs /var/www/stripstarter.us/shared/config/secrets.yml #{release_path}/config/secrets.yml"
   end
   after "deploy:finalize_update", "deploy:symlink_config"
 
