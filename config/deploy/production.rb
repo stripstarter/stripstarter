@@ -4,9 +4,9 @@
 # is considered to be the first unless any hosts have the primary
 # property set.  Don't declare `role :all`, it's a meta role.
 
-role :app, %w{deploy@stripstarter.us}
-role :web, %w{deploy@stripstarter.us}
-role :db,  %w{deploy@stripstarter.us}
+role :app, "107.170.241.223"
+role :web, "107.170.241.223"
+role :db,  "107.170.241.223"
 
 
 # Extended Server Syntax
@@ -25,22 +25,23 @@ role :db,  %w{deploy@stripstarter.us}
 #
 # Global options
 # --------------
-#  set :ssh_options, {
-#    keys: %w(/home/rlisowski/.ssh/id_rsa),
-#    forward_agent: false,
-#    auth_methods: %w(password)
-#  }
+ set :ssh_options, {
+   user: 'deploy',
+   keys: %w(/Users/michael/.ssh/id_rsa),
+   forward_agent: false,
+   auth_methods: %w(publickey password)
+ }
 #
 # And/or per server (overrides global)
 # ------------------------------------
-server 'stripstarter.us',
-  user: 'deploy',
-  roles: %w{web app},
-  ssh_options: {
-    user: 'deploy', # overrides user setting above
-    keys: %w(/Users/michael/.ssh/id_rsa),
-    forward_agent: false,
-    auth_methods: %w(publickey password)
-    # password: 'please use keys'
-  }
+# server '107.170.241.223',
+#   user: 'deploy',
+#   roles: %w{web app},
+#   ssh_options: {
+#     user: 'deploy', # overrides user setting above
+#     keys: %w(/Users/michael/.ssh/id_rsa),
+#     forward_agent: false,
+#     auth_methods: %w(publickey password)
+#     # password: 'please use keys'
+#   }
 

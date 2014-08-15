@@ -1,18 +1,24 @@
 require "bundler/capistrano"
 require "rvm/capistrano"
 
-server "123.123.123.123", :web, :app, :db, primary: true
+set :stages, %w(production staging)
+set :default_stage, "production"
 
 set :application, "stripstarter.us"
 set :user, "deploy"
 set :port, 1138
-set :deploy_to, "/var/www/#{application}"
-set :deploy_via, :remote_cache
+set :deploy_to, "/var/www/stripstarter.us"
+# set :deploy_via, :remote_cache
 set :use_sudo, false
 
 set :scm, "git"
-set :repository, "git@github.com:username/#{application}.git"
+set :repository, "git@github.com:stripstarter/stripstarter.git"
 set :branch, "master"
+
+set :current_path, "/Users/michael/Projects/stripstarter"
+set :shared_path, "/var/www/stripstarter.us/shared"
+
+set :deploy_config_path, "/Users/michael/Projects/stripstarter/config/deploy.rb"
 
 
 default_run_options[:pty] = true
@@ -24,21 +30,20 @@ namespace :deploy do
   %w[start stop restart].each do |command|
     desc "#{command} unicorn server"
     task command, roles: :app, except: {no_release: true} do
-      run "/etc/init.d/unicorn_#{application} #{command}"
+      run "/etc/init.d/unicorn_stripstarter.us #{command}"
     end
   end
 
   task :setup_config, roles: :app do
-    sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
-    sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
-    run "mkdir -p #{shared_path}/config"
-    put File.read("config/database.example.yml"), "#{shared_path}/config/database.yml"
-    puts "Now edit the config files in #{shared_path}."
+    sudo "ln -nfs /Users/michael/Projects/stripstarter/config/nginx.conf /etc/nginx/sites-enabled/stripstarter.us"
+    sudo "ln -nfs /Users/michael/Projects/stripstarter/config/unicorn_init.sh /etc/init.d/unicorn_stripstarter.us"
+    run "mkdir -p /var/www/stripstarter.us/shared/config"
+    puts "Now edit the config files in /var/www/stripstarter.us/shared."
   end
   after "deploy:setup", "deploy:setup_config"
 
   task :symlink_config, roles: :app do
-    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs /var/www/stripstarter.us/shared/config/database.yml #{release_path}/config/database.yml"
   end
   after "deploy:finalize_update", "deploy:symlink_config"
 
