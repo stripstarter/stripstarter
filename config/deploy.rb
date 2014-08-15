@@ -15,7 +15,7 @@ set :scm, "git"
 set :repository, "git@github.com:stripstarter/stripstarter.git"
 set :branch, "master"
 
-set :current_path, "/Users/michael/Projects/stripstarter"
+set :current_path, "/var/www/stripstarter.us/current"
 set :shared_path, "/var/www/stripstarter.us/shared"
 
 set :deploy_config_path, "/Users/michael/Projects/stripstarter/config/deploy.rb"
@@ -35,8 +35,8 @@ namespace :deploy do
   end
 
   task :setup_config, roles: :app do
-    sudo "ln -nfs /Users/michael/Projects/stripstarter/config/nginx.conf /etc/nginx/sites-enabled/stripstarter.us"
-    sudo "ln -nfs /Users/michael/Projects/stripstarter/config/unicorn_init.sh /etc/init.d/unicorn_stripstarter.us"
+    sudo "ln -nfs #{shared_path}/config/nginx.conf /etc/nginx/sites-enabled/stripstarter.us"
+    sudo "ln -nfs #{shared_path}/config/unicorn_init.sh /etc/init.d/unicorn_stripstarter.us"
     run "mkdir -p /var/www/stripstarter.us/shared/config"
     puts "Now edit the config files in /var/www/stripstarter.us/shared."
   end
