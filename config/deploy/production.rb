@@ -27,7 +27,7 @@ role :db,  "107.170.241.223"
 # --------------
  set :ssh_options, {
    user: 'deploy',
-   keys: %w(/Users/michael/.ssh/id_rsa),
+   keys: %w(~/.ssh/id_rsa ~/.ssh/stripstarter),
    forward_agent: false,
    auth_methods: %w(publickey password)
  }

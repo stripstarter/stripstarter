@@ -1,15 +1,23 @@
 development:
-  adapter: 
-  encoding: 
-  database: 
-  pool: 
-  username: 
-  password: 
+  adapter: postgres
+  encoding: utf8
+  database: stripstarter
+  pool: 5
+  username: stripstarter
+  password: YOUR_PASSWORD_HERE
+
+production:
+  adapter: postgres
+  encoding: utf8
+  database: stripstarter
+  pool: 5
+  username: stripstarter
+  password: YOUR_PASSWORD_HERE
 
 test:
-  adapter: 
-  encoding: 
-  database: 
-  pool: 
-  username: 
-  password: 
+  adapter: postgres
+  encoding: utf8
+  database: stripstarter_test
+  pool: 5
+  username: stripstarter
+  password: YOUR_PASSWORD_HERE

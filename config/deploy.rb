@@ -18,7 +18,7 @@ set :branch, "master"
 set :current_path, "/var/www/stripstarter.us/current"
 set :shared_path, "/var/www/stripstarter.us/shared"
 
-set :deploy_config_path, "/Users/michael/Projects/stripstarter/config/deploy.rb"
+set :deploy_config_path, `pwd` + "/config/deploy.rb"
 
 
 default_run_options[:pty] = true
