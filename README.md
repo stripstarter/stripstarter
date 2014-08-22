@@ -1,4 +1,6 @@
-== README
+# Stripstarter
+
+## About
 
 [StripStarter](http://www.stripstarter.us) is a crowdfunding pornography app.  The idea is that two types of people can make campaigns:
 
@@ -6,13 +8,15 @@
 
 * individuals pledging money to elicit production of material of which the target of the campaign owns the creative license
 
-An example would be a crowd-sourced campaign for Barack Obama to take a series of photographs in a state of undress.  In our business plan, John Doe could create a campaign and it would be joined by a number of interested pledgers, raising the number high enough for the President to decide he wants to release such material through our distribution platform.
+An example would be a crowd-sourced campaign for Barack Obama to take a series of photographs in a state of undress.  In our business plan, John Doe would create a campaign.  This campaign would receive additional pledges from interested users, driving the pledge amount up.  If, at any point, the President decides to accept the campaign, he would release the material to Stripstarter, who would distribute it to all who pledged to the campaign.
+
+Alternatively, the President could start a campaign himself which, if it received a requisite funding level, would achieve the same effect.
 
 For any additional information, please email stripstarter [at] gmail [dot] com.
 
 All code in this repository is released under the [Do What The Fuck You Want license](http://www.wtfpl.net/)
 
-== Build instructions
+## Build instructions
 
 * Ruby >= 2.0.0, Rails >= 4.0.0, Postgres >= 9.0
 
@@ -29,7 +33,7 @@ All code in this repository is released under the [Do What The Fuck You Want lic
 6.  `rails s` in the main directory for the local server; `bundle exec cap deploy` to deploy the latest version of this repo to the server.
 
 
-== Best practices
+## Best practices
 
 1.  Push your changes to your fork; make a PR into the main repo; wait for SOMEONE ELSE to code review and merge in.
 
