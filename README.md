@@ -1,6 +1,6 @@
 == README
 
-StripStarter (http://www.stripstarter.us) is a crowdfunding pornography app.  The idea is that two types of people can make campaigns:
+[StripStarter](http://www.stripstarter.us) is a crowdfunding pornography app.  The idea is that two types of people can make campaigns:
 
 * individuals looking to raise money for production of material of which they own the creative license, and
 
@@ -10,7 +10,7 @@ An example would be a crowd-sourced campaign for Barack Obama to take a series o
 
 For any additional information, please email stripstarter [at] gmail [dot] com.
 
-All code in this repository is released under the Do What The Fuck You Want license (http://www.wtfpl.net/)
+All code in this repository is released under the [Do What The Fuck You Want license](http://www.wtfpl.net/)
 
 == Build instructions
 
@@ -26,7 +26,7 @@ All code in this repository is released under the Do What The Fuck You Want lice
 
 5.  Generate an ssh key (preferably in `~/.ssh/id_rsa` or `~/.ssh/stripstarter`); email the public key to stripstarter [at] gmail [dot] com to get it put on the server.  If you put the key somewhere else, you'll need to update `config/deploy/production.rb` with the location for capistrano deployments.
 
-6.  `rails s` in the main directory for the local server; `bundle exec cap deploy` to deploy the latest version of http://github.com/stripstarter/stripstarter.git to the server.
+6.  `rails s` in the main directory for the local server; `bundle exec cap deploy` to deploy the latest version of this repo to the server.
 
 
 == Best practices
