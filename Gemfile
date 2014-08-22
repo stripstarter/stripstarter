@@ -28,9 +28,12 @@ gem 'rvm-capistrano'
 
 group :development do
 	gem 'spring'
-	gem 'pry'
   gem 'better_errors'
 end
+
+gem 'pry'
+gem 'rspec'
+gem 'rspec-rails'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
