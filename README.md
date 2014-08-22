@@ -12,6 +12,8 @@ An example would be a crowd-sourced campaign for Barack Obama to take a series o
 
 Alternatively, the President could start a campaign himself which, if it received a requisite funding level, would achieve the same effect.
 
+When one creates a campaign, they specify certain features.  For example: a video of Mr. Obama with a shoe on his head.  Others can create campaigns for the same person with other features.  Therefore, there can be multiple co-existing campaigns for the same person.  To redeem a campaign, the person must release the specified medium (photo/video) including the features specified.  Distribution rights are held by Stripstarter.
+
 For any additional information, please email stripstarter [at] gmail [dot] com.
 
 All code in this repository is released under the [Do What The Fuck You Want license](http://www.wtfpl.net/)
