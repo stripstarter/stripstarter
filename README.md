@@ -1,8 +1,11 @@
+[![Build Status](https://travis-ci.org/stripstarter/stripstarter.png)](https://travis-ci.org/stripstarter/stripstarter)
+
+
 # Stripstarter
 
 ## About
 
-[StripStarter](http://www.stripstarter.us) is a social crowdsourcing app.  The idea is that two types of people can make campaigns:
+[Stripstarter](http://www.stripstarter.us) is a social crowdsourcing app.  The idea is that two types of people can make campaigns:
 
 * individuals looking to raise money for production of material of which they own the creative license, and
 
