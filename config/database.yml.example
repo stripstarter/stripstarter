@@ -1,5 +1,5 @@
 development:
-  adapter: postgres
+  adapter: postgresql
   encoding: utf8
   database: stripstarter
   pool: 5
@@ -7,7 +7,7 @@ development:
   password: YOUR_PASSWORD_HERE
 
 production:
-  adapter: postgres
+  adapter: postgresql
   encoding: utf8
   database: stripstarter
   pool: 5
@@ -15,7 +15,7 @@ production:
   password: YOUR_PASSWORD_HERE
 
 test:
-  adapter: postgres
+  adapter: postgresql
   encoding: utf8
   database: stripstarter_test
   pool: 5
