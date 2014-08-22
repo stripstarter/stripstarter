@@ -27,23 +27,23 @@ gem 'capistrano', '~> 2.15.0'
 gem 'rvm-capistrano'
 
 group :development do
-	gem 'spring'
+  gem 'spring'
   gem 'better_errors'
   gem 'pry'
 end
 
 group :test do
-	gem 'sqlite3'
-	gem 'pry'
-	gem 'rspec'
-	gem 'rspec-rails'
-	gem 'factory_girl'
-	gem 'factory_girl_rails'
-	gem 'faker'
+  gem 'sqlite3'
+  gem 'pry'
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'factory_girl'
+  gem 'factory_girl_rails'
+  gem 'faker'
 end
 
 group :production do
-	gem 'unicorn'
+  gem 'unicorn'
 end
 
 # Use ActiveModel has_secure_password
