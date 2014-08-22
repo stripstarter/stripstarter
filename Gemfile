@@ -29,15 +29,19 @@ gem 'rvm-capistrano'
 group :development do
 	gem 'spring'
   gem 'better_errors'
+  gem 'pry'
 end
 
-gem 'pry'
-gem 'rspec'
-gem 'rspec-rails'
+group :test do
+	gem 'sqlite3'
+	gem 'pry'
+	gem 'rspec'
+	gem 'rspec-rails'
+end
+
+group :production do
+	gem 'unicorn'
+end
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-
-# Use unicorn as the app server
-gem 'unicorn'
-
