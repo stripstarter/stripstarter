@@ -15,9 +15,8 @@ production:
   password: YOUR_PASSWORD_HERE
 
 test:
-  adapter: postgresql
+  adapter: sqlite3
   encoding: utf8
-  database: stripstarter_test
+  database: db/test.sqlite3
   pool: 5
-  username: stripstarter
-  password: YOUR_PASSWORD_HERE
+  timeout: 5000
