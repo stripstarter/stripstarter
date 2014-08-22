@@ -40,3 +40,8 @@ All code in this repository is released under the [Do What The Fuck You Want lic
 2.  Two-space indentation on all files, please.
 
 3.  Write tests for new code if you have a chance.
+
+
+## Getting started
+
+If you don't want to be publicly associated with this project, but still want to contribute, send an email to stripstarter [at] gmail [dot] com with your public key and I will add it to the stripstarter GitHub account.  That way, you can push changes directly to the repo as the stripstarter GitHub user (not affiliated with your actual account).  You will need to configure git locally to use the *stripstarter@gmail.com* email address for your commits.
