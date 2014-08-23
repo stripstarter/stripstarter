@@ -1,10 +1,10 @@
-<% title "Login" %>
-
 <% form_for @user_session do |f| %>
-  <%= f.error_messages %>
+  <% @user_session.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
   <p>
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
   </p>
   <p>
     <%= f.label :password %><br />
