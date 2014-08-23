@@ -194,7 +194,6 @@ DEPENDENCIES
   capistrano (~> 2.15.0)
   coffee-rails (~> 4.0.0)
   devise
-  factory_girl
   factory_girl_rails
   faker
   jbuilder (~> 2.0)
