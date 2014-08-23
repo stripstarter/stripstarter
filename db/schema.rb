@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140822232418) do
+ActiveRecord::Schema.define(version: 20140823001833) do
 
   create_table "backers", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -33,11 +33,24 @@ ActiveRecord::Schema.define(version: 20140822232418) do
   add_index "backers", ["email"], name: "index_backers_on_email", unique: true
   add_index "backers", ["reset_password_token"], name: "index_backers_on_reset_password_token", unique: true
 
+  create_table "campaign_feature_joins", force: true do |t|
+    t.integer  "campaign_id"
+    t.integer  "feature_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "campaigns", force: true do |t|
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "name"
+  end
+
+  create_table "features", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
