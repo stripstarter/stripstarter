@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140823001833) do
+ActiveRecord::Schema.define(version: 20140823204544) do
 
   create_table "backers", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20140823001833) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "name"
+    t.string   "status",     default: "inactive"
   end
 
   create_table "features", force: true do |t|
