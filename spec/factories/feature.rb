@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :feature do
-    name { Faker::Company.catch_phrase }
+    name { Faker::Lorem.words(2).join(" ") }
   end
 end

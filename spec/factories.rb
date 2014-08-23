@@ -1,0 +1,1 @@
+Dir["spec/factories/*"].each {|f| require Rails.root.join(f)}
