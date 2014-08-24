@@ -5,5 +5,10 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     password { "password" }
     password_confirmation { "password" }
+    role { "pledger" }
+  end
+
+  factory :user_performer, :class => User, parent: :user do
+    role { "performer" }
   end
 end
