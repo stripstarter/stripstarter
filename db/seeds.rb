@@ -11,3 +11,11 @@ require 'factory_girl'
 10.times do
 	FactoryGirl.create(:campaign)
 end
+
+10.times do
+  FactoryGirl.create(:user)
+end
+
+5.times do
+  FactoryGirl.create(:user_performer)
+end
