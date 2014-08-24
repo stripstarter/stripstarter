@@ -21,10 +21,13 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
-gem 'devise'
 gem 'pg'
 gem 'capistrano', '~> 2.15.0'
 gem 'rvm-capistrano'
+gem 'authlogic'
+gem 'bcrypt', '~> 3.1.7'
+gem 'state_machine'
+gem 'scrypt'
 
 group :development, :test do
   gem 'factory_girl_rails', require: false
@@ -36,6 +39,7 @@ end
 group :development do
   gem 'spring'
   gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test do
@@ -46,8 +50,3 @@ end
 group :production do
   gem 'unicorn'
 end
-
-# Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
-
-gem 'state_machine'
