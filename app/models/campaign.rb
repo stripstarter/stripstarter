@@ -27,5 +27,12 @@ class Campaign < ActiveRecord::Base
       .map(&:user)
       .select { |user| user.pledger? }
   end
+
+  # What a fucking hack.
+  # See https://github.com/stripstarter/stripstarter/issues/25
+  # for a desparately needed refactor.
+  def users
+    pledgers + performers
+  end
   
 end

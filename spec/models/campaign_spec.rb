@@ -35,6 +35,10 @@ RSpec.describe Campaign, :type => :model do
     it "has pledgers" do
       expect(@campaign.pledgers.map(&:role).uniq).to eq(['pledger'])
     end
+
+    it "has both" do
+      expect(@campaign.users.count).to eq(2)
+    end
   end
 
 end
