@@ -20,4 +20,5 @@ class User < ActiveRecord::Base
   def performer?
     role == "performer"
   end
+   
 end

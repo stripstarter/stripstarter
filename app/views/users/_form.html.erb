@@ -24,6 +24,12 @@
     <%= f.text_field :email %>
   </div>
   <div class="field">
+    <%= f.radio_button :role, 'pledger', checked: true %>
+    <%= f.label :pledger, value: "Pledger" %><br>
+    <%= f.radio_button :role, 'performer' %>
+    <%= f.label :performer, value: "Performer" %><br>
+  </div>
+  <div class="field">
     <%= f.label :password %><br>
     <%= f.password_field :password %>
   </div>
