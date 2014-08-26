@@ -34,17 +34,6 @@ ActiveRecord::Schema.define(version: 20140823225851) do
     t.datetime "updated_at"
   end
 
-  create_table "pledgers", force: true do |t|
-    t.string   "email"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "password"
-    t.string   "password_confirmation"
-    t.integer  "login_count"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", force: true do |t|
     t.string   "email"
     t.string   "first_name"

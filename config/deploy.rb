@@ -5,6 +5,7 @@ set :stages, %w(production staging)
 set :default_stage, "production"
 
 set :application, "stripstarter.us"
+
 set :user, "deploy"
 set :port, 1138
 set :deploy_to, "/var/www/stripstarter.us"
