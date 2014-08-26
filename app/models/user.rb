@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
+
   acts_as_authentic
+
+  include StripstarterErrors
 
   has_many :pledges
   has_many :campaigns, through: :pledges
@@ -27,4 +30,24 @@ class User < ActiveRecord::Base
     role == "performer"
   end
 
+  def pledges
+    raise UserMismatchError, "User is not pledger" if !pledger?
+    super
+  end
+
+  def performances
+    raise UserMismatchError, "User is not performer" if !performer?
+    super
+  end
+
+  def campaigns
+    case
+    when pledger?
+      pledges.map(&:campaign)
+    when performer?
+      performances.map(&:campaign)
+    else
+      super
+    end
+  end
 end
