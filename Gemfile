@@ -28,6 +28,7 @@ gem 'authlogic'
 gem 'bcrypt', '~> 3.1.7'
 gem 'state_machine'
 gem 'scrypt'
+gem 'active_model_serializers'
 
 group :development, :test do
   gem 'factory_girl_rails', require: false
