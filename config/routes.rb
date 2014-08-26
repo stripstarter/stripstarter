@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :performances
+
+  resources :pledges
+
   root 'welcome#index'
 
   resources :campaigns

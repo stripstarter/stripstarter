@@ -1,6 +1,12 @@
 class User < ActiveRecord::Base
   acts_as_authentic
 
+  has_many :pledges
+  has_many :campaigns, through: :pledges
+
+  has_many :performances
+  has_many :campaigns, through: :performances
+
   #########
   # Roles #
   #########
@@ -20,5 +26,5 @@ class User < ActiveRecord::Base
   def performer?
     role == "performer"
   end
-   
+
 end
