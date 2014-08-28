@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
 
   acts_as_authentic
 
+  # Travis hack
+  attr_writer :password, :password_confirmation
+
   ################
   # Associations #
   ################
