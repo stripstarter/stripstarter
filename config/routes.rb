@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+  resources :performances
+
+  resources :pledges
+
   root 'welcome#index'
 
   resources :campaigns
-  resources :users
+  resources :users, except: :index
   resources :user_sessions
 
   get 'login' => 'user_sessions#new', as: 'login'

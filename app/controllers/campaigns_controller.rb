@@ -5,7 +5,7 @@ class CampaignsController < ApplicationController
   def index
     @campaigns = Campaign.all
     respond_to do |format|
-      format.json { render :json => @campaigns }
+      format.json { render :json => @campaigns, root: false }
       format.html
     end
   end
@@ -15,7 +15,7 @@ class CampaignsController < ApplicationController
   def show
     @campaign = Campaign.find(params[:id])
     respond_to do |format|
-      format.json { render :json => @campaign }
+      format.json { render :json => @campaign, root: false }
       format.html
     end
   end
