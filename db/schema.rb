@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140828024643) do
+ActiveRecord::Schema.define(version: 20140828225231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,18 +37,18 @@ ActiveRecord::Schema.define(version: 20140828024643) do
   end
 
   create_table "performances", force: true do |t|
-    t.integer  "user_id"
     t.integer  "campaign_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "performer_id"
   end
 
   create_table "pledges", force: true do |t|
-    t.integer  "user_id"
     t.integer  "campaign_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "amount",      precision: 19, scale: 2
+    t.integer  "pledger_id"
   end
 
   create_table "users", force: true do |t|
@@ -56,18 +56,18 @@ ActiveRecord::Schema.define(version: 20140828024643) do
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "login_count"
-    t.string   "role"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "crypted_password"
     t.string   "password_salt"
     t.string   "persistence_token"
-    t.integer  "failed_login_count", default: 0, null: false
+    t.integer  "failed_login_count", default: 0,         null: false
     t.datetime "last_request_at"
     t.datetime "current_login_at"
     t.datetime "last_login_at"
     t.string   "current_login_ip"
     t.string   "last_login_ip"
+    t.string   "type",               default: "Pledger"
   end
 
 end
