@@ -1,3 +1,3 @@
 class PerformanceSerializer < ActiveModel::Serializer
-  attributes :id, :user_id, :campaign_id
+  attributes :id, :performer_id, :campaign_id
 end
