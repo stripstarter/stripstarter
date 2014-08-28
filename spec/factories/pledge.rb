@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :pledge do
+    amount { 50 }
   end
 
   factory :pledge_with_user,

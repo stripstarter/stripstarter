@@ -5,5 +5,22 @@
   <%= @campaign.name %>
 </p>
 
+<p>
+  <strong>Funding Level:</strong>
+  <%= @campaign.amount %>
+</p>
+
+<p>
+  <strong>Pledgers:</strong>
+  <table>
+    <% @campaign.pledges.each do |pledge| %>
+      <tr>
+        <td><%= pledge.pledger.first_name %></td>
+        <td><%= pledge.amount %></td>
+      </tr>
+    <% end %>
+  </table>
+</p>
+
 <%= link_to 'Edit', edit_campaign_path(@campaign) %> |
 <%= link_to 'Back', campaigns_path %>

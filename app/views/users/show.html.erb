@@ -1,8 +1,8 @@
 <h1> Attributes </h1>
 <table>
   <tr>
-    <td>Attribute</td>
-    <td>Value</td>
+    <th>Attribute</th>
+    <th>Value</th>
   </tr>
   <% @user.attributes.slice("first_name", "last_name").each do |key, value| %>
     <tr>
@@ -14,6 +14,10 @@
 
 <h1>Pledges</h1>
 <table>
+  <tr>
+    <th>Campaign</th>
+    <th>Value</th>
+  </tr>
   <% @user.pledges.each do |pledge| %>
     <tr>
       <td><%= pledge.campaign.name %></td>
