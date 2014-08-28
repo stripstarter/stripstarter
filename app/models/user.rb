@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 
   acts_as_authentic
 
-  include StripstarterErrors
+  include Stripstarter::Error
 
   ################
   # Associations #
@@ -35,12 +35,12 @@ class User < ActiveRecord::Base
   end
 
   def pledges
-    raise UserMismatchError, "User is not pledger" if !pledger?
+    raise UserMismatch, "User is not pledger" if !pledger?
     super
   end
 
   def performances
-    raise UserMismatchError, "User is not performer" if !performer?
+    raise UserMismatch, "User is not performer" if !performer?
     super
   end
 

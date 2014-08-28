@@ -1,4 +1,5 @@
-module StripstarterErrors
+module Stripstarter
+  module Error
 
   # Should we have one main error class?
   #
@@ -8,9 +9,10 @@ module StripstarterErrors
   #   end
   # end
 
-  class UserMismatchError < StandardError
-    def initialize(msg = "User mismatch event")
-      super(msg)
+    class UserMismatch < StandardError
+      def initialize(msg = "User mismatch event")
+        super(msg)
+      end
     end
   end
 end

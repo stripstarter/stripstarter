@@ -40,14 +40,14 @@ RSpec.describe User, :type => :model do
       @user = FactoryGirl.create(:user_with_performance_and_campaign)
       expect do
         @user.pledges
-      end.to raise_error(StripstarterErrors::UserMismatchError)
+      end.to raise_error(Stripstarter::Error::UserMismatch)
     end
 
     it "has no performances if a pledger" do
       @user = FactoryGirl.create(:user_with_pledge_and_campaign)
       expect do
         @user.performances
-      end.to raise_error(StripstarterErrors::UserMismatchError)
+      end.to raise_error(Stripstarter::Error::UserMismatch)
     end
   end
 end
