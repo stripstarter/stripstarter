@@ -47,6 +47,10 @@ class User < ActiveRecord::Base
     role == "performer"
   end
 
+  ####################
+  # Associations, II #
+  ####################
+
   def pledges
     raise Stripstarter::Error::UserMismatch, "User is not pledger" if !pledger?
     super

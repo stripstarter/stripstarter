@@ -18,6 +18,16 @@ RSpec.describe User, :type => :model do
   end
 
   context "associations" do
+    it "has campaigns through pledges if pledger" do
+      @user = FactoryGirl.create(:user_with_pledge_and_campaign)
+      expect(@user.campaigns.first).to be_a Campaign
+    end
+
+    it "has campaigns through performances if performer" do
+      @user = FactoryGirl.create(:user_with_performance_and_campaign)
+      expect(@user.campaigns.first).to be_a Campaign
+    end
+
     it "has pledges if a pledger" do
       @user = FactoryGirl.create(:user_with_pledge_and_campaign)
       expect do

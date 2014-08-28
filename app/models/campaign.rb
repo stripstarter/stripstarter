@@ -1,5 +1,6 @@
 class Campaign < ActiveRecord::Base
   include CampaignStateMachine
+  # States: active, inactive, completed, failed
 
   has_many :campaign_feature_joins
   has_many :features, through: :campaign_feature_joins
