@@ -27,10 +27,11 @@ RSpec.describe PledgesController, :type => :controller do
       user = FactoryGirl.create(:user, role: "performer")
       controller.stub(:current_user).and_return(user)
       campaign = FactoryGirl.create(:campaign)
-      post  :create,
-            pledge: {amount: 100, campaign_id: campaign.id},
-            format: :html
-      expect(response.status).to eq(500)
+      expect do
+        post  :create,
+              pledge: {amount: 100, campaign_id: campaign.id},
+              format: :html
+      end.to raise_error(Stripstarter::Error::UserMismatch)
     end
   end
 

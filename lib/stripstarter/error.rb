@@ -9,8 +9,14 @@ module Stripstarter
   #   end
   # end
 
-    class UserMismatch
+    class UserMismatch < StandardError
       def initialize(msg = "User mismatch event")
+        super(msg)
+      end
+    end
+
+    class Unauthorized < StandardError
+      def initialize(msg = "User is not authorized for this resource")
         super(msg)
       end
     end

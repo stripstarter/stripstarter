@@ -1,5 +1,4 @@
 class PledgesController < ApplicationController
-  include Stripstarter::Error
 
   before_filter :ensure_current_user_is_pledger
   before_filter :ensure_current_user, only: :index
@@ -7,9 +6,6 @@ class PledgesController < ApplicationController
   def new
     @pledge = Pledge.new
     @campaigns = Campaign.all
-    if params[:user_id].to_i != current_user.id
-      render :text => "You are not authorized", :status => 206
-    end
   end
 
   def create

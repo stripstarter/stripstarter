@@ -33,12 +33,12 @@ class User < ActiveRecord::Base
   end
 
   def pledges
-    raise UserMismatch, "User is not pledger" if !pledger?
+    raise Stripstarter::Error::UserMismatch, "User is not pledger" if !pledger?
     super
   end
 
   def performances
-    raise UserMismatch, "User is not performer" if !performer?
+    raise Stripstarter::Error::UserMismatch, "User is not performer" if !performer?
     super
   end
 
