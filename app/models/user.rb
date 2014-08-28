@@ -4,6 +4,10 @@ class User < ActiveRecord::Base
 
   include StripstarterErrors
 
+  ################
+  # Associations #
+  ################
+
   has_many :pledges
   has_many :campaigns, through: :pledges
 

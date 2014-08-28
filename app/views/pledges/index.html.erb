@@ -1,0 +1,9 @@
+<h1>Pledges</h1>
+<table>
+  <% @pledges.each do |pledge| %>
+    <tr>
+      <td><%= pledge.campaign.name %></td>
+      <td><%= pledge.amount %></td>
+    </tr>
+  <% end %>
+</table>
