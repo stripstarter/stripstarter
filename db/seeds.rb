@@ -8,14 +8,8 @@
 require 'faker'
 require 'factory_girl'
 
-10.times do
-	FactoryGirl.create(:campaign)
-end
+require Rails.root.join('spec/factories')
 
 10.times do
-  FactoryGirl.create(:user)
-end
-
-5.times do
-  FactoryGirl.create(:user_performer)
+	FactoryGirl.create(:campaign_with_users)
 end
