@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
   ###############
   # Travis hack #
   ###############
-  
-  attr_writer :password, :password_confirmation
+
+  attr_accessor :password, :password_confirmation
 
   validates :password, :presence => true,
                        :confirmation => true,
