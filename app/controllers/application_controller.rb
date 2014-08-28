@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
-  rescue_from Stripstarter::Error, :with => :render_500
+  rescue_from Stripstarter::Error::Base, :with => :render_500
 
   private
 

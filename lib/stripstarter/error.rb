@@ -1,21 +1,19 @@
 module Stripstarter
-  class Error < StandardError
+  module Error
 
-  # Should we have one main error class?
-  #
-  # class StripstarterError < StandardError
-  #   def initialize(msg = nil)
-  #     super(msg)
-  #   end
-  # end
+    class Base < StandardError
+      def initialize(msg = nil)
+        super(msg)
+      end
+    end
 
-    class UserMismatch < StandardError
+    class UserMismatch < Base
       def initialize(msg = "User mismatch event")
         super(msg)
       end
     end
 
-    class Unauthorized < StandardError
+    class Unauthorized < Base  
       def initialize(msg = "User is not authorized for this resource")
         super(msg)
       end
