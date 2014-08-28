@@ -1,7 +1,9 @@
+require 'pry'
+
 class UsersController < ApplicationController
 
   def show
-    @user = User.find(params[:id])
+    @user = current_user || User.find(params[:id])
     respond_to do |format|
       format.json { render json: @user }
       format.html
@@ -44,7 +46,8 @@ class UsersController < ApplicationController
       :last_name,
       :email,
       :password,
-      :password_confirmation
+      :password_confirmation,
+      :role
     )
   end
 end

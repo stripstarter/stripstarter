@@ -1,0 +1,23 @@
+<h1> Attributes </h1>
+<table>
+  <tr>
+    <td>Attribute</td>
+    <td>Value</td>
+  </tr>
+  <% @user.attributes.slice("first_name", "last_name").each do |key, value| %>
+    <tr>
+      <td><%= key %></td>
+      <td><%= value %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h1>Pledges</h1>
+<table>
+  <% @user.pledges.each do |pledge| %>
+    <tr>
+      <td><%= pledge.campaign.name %></td>
+      <td><%= pledge.amount %></td>
+    </tr>
+  <% end %>
+</table>
