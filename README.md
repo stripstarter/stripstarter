@@ -46,7 +46,13 @@ All code in this repository is released under the [Do What The Fuck You Want lic
 3.  Write tests for new code if you have a chance.
 
 
-## Getting started
+## Contributing
+
+1.  Fork the repo into your own account
+
+2.  Push branches to your repo and make PRs into the main repo's master branch
+
+#### Anonymity
 
 If you don't want to be publicly associated with this project, but still want to contribute, send an email to stripstarter [at] gmail [dot] com with your public key and I will add it to the stripstarter GitHub account.  That way, you can push changes directly to the repo as the stripstarter GitHub user (not affiliated with your actual account).
 
