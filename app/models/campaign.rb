@@ -34,5 +34,11 @@ class Campaign < ActiveRecord::Base
   def users
     pledgers + performers
   end
+
+  def amount
+    pledges.collect do |pledge|
+      pledge.amount.to_i
+    end.inject(:+)
+  end
   
 end

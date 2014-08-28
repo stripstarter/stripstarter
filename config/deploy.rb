@@ -21,7 +21,6 @@ set :shared_path, "/var/www/stripstarter.us/shared"
 
 set :deploy_config_path, `pwd` + "/config/deploy.rb"
 
-
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
@@ -57,5 +56,11 @@ namespace :deploy do
       exit
     end
   end
+  task :set_ruby_version, roles: :app do
+    default_run_options[:shell] = '/bin/bash --login'
+    ruby_version = File.read(".ruby-version").strip
+    run "rvm use #{ruby_version}"
+  end
   before "deploy", "deploy:check_revision"
+  after "deploy", "deploy:set_ruby_version"
 end

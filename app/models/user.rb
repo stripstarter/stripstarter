@@ -2,7 +2,20 @@ class User < ActiveRecord::Base
 
   acts_as_authentic
 
-  include StripstarterErrors
+  ###############
+  # Travis hack #
+  ###############
+
+  attr_accessor :password, :password_confirmation
+
+  validates :password, :presence => true,
+                       :confirmation => true,
+                       :length => {:within => 6..40},
+                       :on => :create
+  validates :password, :confirmation => true,
+                       :length => {:within => 6..40},
+                       :allow_blank => true,
+                       :on => :update
 
   ################
   # Associations #
@@ -35,12 +48,12 @@ class User < ActiveRecord::Base
   end
 
   def pledges
-    raise UserMismatchError, "User is not pledger" if !pledger?
+    raise Stripstarter::Error::UserMismatch, "User is not pledger" if !pledger?
     super
   end
 
   def performances
-    raise UserMismatchError, "User is not performer" if !performer?
+    raise Stripstarter::Error::UserMismatch, "User is not performer" if !performer?
     super
   end
 

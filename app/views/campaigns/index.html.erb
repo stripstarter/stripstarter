@@ -3,7 +3,8 @@
 <table>
   <thead>
     <tr>
-      <th>Title</th>
+      <th>Name</th>
+      <th>Amount Raised</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,6 +13,7 @@
     <% @campaigns.each do |campaign| %>
       <tr>
         <td><%= campaign.name %></td>
+        <td><%= campaign.amount %></td>
         <td><%= link_to 'Show', campaign %></td>
         <td><%= link_to 'Edit', edit_campaign_path(campaign) %></td>
         <td><%= link_to 'Destroy', campaign, method: :delete, data: { confirm: 'Are you sure?' } %></td>

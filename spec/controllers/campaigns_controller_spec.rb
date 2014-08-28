@@ -29,4 +29,15 @@ describe CampaignsController do
       expect(body["id"]).to eq(@campaign.id)
     end
   end
+
+  context "#create" do
+
+    it "creates a campaign with name" do
+      @user = FactoryGirl.create(:user)
+      controller.stub(:current_user).and_return(@user)
+      post :create, campaign: {name: "Example Campaign"}, format: :html
+      expect(Campaign.last.name).to eq("Example Campaign")
+    end
+  end
+
 end

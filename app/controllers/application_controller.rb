@@ -5,7 +5,13 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
+  rescue_from Stripstarter::Error::Base, :with => :render_500
+
   private
+
+  def render_500(exception)
+    render :file => Rails.root.join("public/500.html"), :status => 500
+  end
 
   def current_user_session
     return @current_user_session if defined?(@current_user_session)
