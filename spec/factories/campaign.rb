@@ -5,15 +5,22 @@ FactoryGirl.define do
     features { 2.times.collect { FactoryGirl.create(:feature) } }
   end
 
-  factory :campaign_with_pledger do
-    pledges { [FactoryGirl.create(:pledge)] }
-    performances { [FactoryGirl.create(:performance)] }
-  end
-
-  factory :campaign_with_users,
+  factory :campaign_with_pledge,
     :class => Campaign,
     :parent => :campaign do
-      pledges { [FactoryGirl.create(:pledge_with_user)] }
-      performances { [FactoryGirl.create(:performance_with_user)] }
+      pledges { [FactoryGirl.create(:pledge_with_pledger)] }
+    end
+
+  factory :campaign_with_performance,
+    :class => Campaign,
+    :parent => :campaign do
+      performances { [FactoryGirl.create(:performance_with_performer)] }
+    end
+
+  factory :campaign_with_pledge_and_performance,
+    :class => Campaign,
+    :parent => :campaign do
+      pledges { [FactoryGirl.create(:pledge_with_pledger)] }
+      performances { [FactoryGirl.create(:performance_with_performer)] }
     end
 end

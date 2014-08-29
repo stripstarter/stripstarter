@@ -11,5 +11,7 @@ require 'factory_girl'
 require Rails.root.join('spec/factories')
 
 10.times do
-	FactoryGirl.create(:campaign_with_users)
+	FactoryGirl.create(:campaign_with_pledge_and_performance)
 end
+
+FactoryGirl.create(:admin)

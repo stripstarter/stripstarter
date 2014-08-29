@@ -3,10 +3,10 @@ FactoryGirl.define do
     amount { 50 }
   end
 
-  factory :pledge_with_user,
+  factory :pledge_with_pledger,
     :class => Pledge,
     :parent => :pledge do
-      user { FactoryGirl.create(:user, role: 'pledger') }
+      pledger { FactoryGirl.create(:pledger) }
     end
 
   factory :pledge_with_campaign,
@@ -15,10 +15,10 @@ FactoryGirl.define do
       campaign { FactoryGirl.create(:campaign) }
     end
 
-  factory :pledge_with_campaign_and_user,
+  factory :pledge_with_campaign_and_pledger,
     :class => Pledge,
     :parent => :pledge do
-      user { FactoryGirl.create(:user) }
+      pledger { FactoryGirl.create(:pledger) }
       campaign { FactoryGirl.create(:campaign) }
     end
 end
