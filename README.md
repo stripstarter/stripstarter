@@ -34,7 +34,9 @@ All code in this repository is released under the [Do What The Fuck You Want lic
 
 5.  Generate an ssh key (preferably in `~/.ssh/id_rsa` or `~/.ssh/stripstarter`); email the public key to stripstarter [at] gmail [dot] com to get it put on the server.  If you put the key somewhere else, you'll need to update `config/deploy/production.rb` with the location for capistrano deployments.
 
-6.  `rails s` in the main directory for the local server; `bundle exec cap deploy` to deploy the latest version of this repo to the server.
+6. `bundle exec rake db:create` and `bundle exec rake db:seed`
+
+7.  `rails s` in the main directory for the local server; `bundle exec cap deploy` to deploy the latest version of this repo to the server.
 
 
 ## Best practices
