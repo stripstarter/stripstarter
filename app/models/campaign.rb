@@ -1,5 +1,5 @@
 class Campaign < ActiveRecord::Base
-  include CampaignStateMachine
+  include Stripstarter::CampaignStateMachine
   # States: active, inactive, completed, failed
 
   has_many :campaign_feature_joins
