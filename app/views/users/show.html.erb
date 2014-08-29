@@ -12,16 +12,18 @@
   <% end %>
 </table>
 
-<h1>Pledges</h1>
-<table>
-  <tr>
-    <th>Campaign</th>
-    <th>Value</th>
-  </tr>
-  <% @user.pledges.each do |pledge| %>
+<% if @user.is_a? Pledger %>
+  <h1>Pledges</h1>
+  <table>
     <tr>
-      <td><%= pledge.campaign.name %></td>
-      <td><%= pledge.amount %></td>
+      <th>Campaign</th>
+      <th>Value</th>
     </tr>
-  <% end %>
-</table>
+    <% @user.pledges.each do |pledge| %>
+      <tr>
+        <td><%= pledge.campaign.name %></td>
+        <td><%= pledge.amount %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
