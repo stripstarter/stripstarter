@@ -25,19 +25,21 @@ RSpec.describe Campaign, :type => :model do
   context "associations" do
 
     before(:each) do
-      @campaign = FactoryGirl.create(:campaign_with_users)
+      @campaign = FactoryGirl.create(:campaign_with_pledge_and_performance)
     end
 
     it "has performers" do
-      expect(@campaign.performers.map(&:role).uniq).to eq(['performer'])
+      expect(@campaign.performers.first).to be_a Performer
     end
 
     it "has pledgers" do
-      expect(@campaign.pledgers.map(&:role).uniq).to eq(['pledger'])
+      expect(@campaign.pledgers.first).to be_a Pledger
     end
 
     it "has both" do
-      expect(@campaign.users.count).to eq(2)
+      types = @campaign.users.map(&:class)
+      expect(types).to include Performer
+      expect(types).to include Pledger
     end
   end
 
