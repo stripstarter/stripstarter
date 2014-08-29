@@ -1,21 +1,36 @@
 Rails.application.routes.draw do
-  resources :performances
-
-  resources :pledges
-
   root 'welcome#index'
 
+  #############
+  # Campaigns #
+  #############
+
   resources :campaigns
-  resources :users, except: :index
+
+  ############
+  # Sessions #
+  ############
+
   resources :user_sessions
+  get 'login' => 'user_sessions#new', as: 'login'
+  get 'logout' => 'user_sessions#destroy', as: 'logout'
+
+  #########
+  # Users #
+  #########
+
+  resources :users, except: :index
+  get '/pledgers/:id' => 'users#show'
+  get '/performers/:id' => 'users#show'
+  resources :pledgers, controller: "users", type: "Pledger"
+  resources :performers, controller: "users", type: "Performer"
+
+  ###########
+  # Pledges #
+  ###########
 
   get '/users/:user_id/pledges/new' => 'pledges#new'
   post '/pledges' => 'pledges#create'
   get '/users/:user_id/pledges' => 'pledges#index'
-
-  get 'login' => 'user_sessions#new', as: 'login'
-  get 'logout' => 'user_sessions#destroy', as: 'logout'
-
-
 
 end
