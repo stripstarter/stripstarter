@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20140828225231) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "campaign_feature_joins", force: true do |t|
     t.integer  "campaign_id"
     t.integer  "feature_id"
