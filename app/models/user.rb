@@ -6,7 +6,9 @@ class User < ActiveRecord::Base
   # Travis hack #
   ###############
 
-  attr_accessor :password, :password_confirmation
+  if Rails.env.test?
+    attr_accessor :password, :password_confirmation
+  end
 
   validates :password, :presence => true,
                        :confirmation => true,

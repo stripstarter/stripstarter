@@ -3,6 +3,11 @@ class UserSessionsController < ApplicationController
   def new
     @user_session = UserSession.new
   end
+
+  def index
+    @user_session = UserSession.new
+    render action: 'new'
+  end
   
   def create
     @user_session = UserSession.new(params[:user_session])

@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(
+    (params["user"] || params["pledger"] || params["performer"]).permit(
       :first_name,
       :last_name,
       :email,
