@@ -64,3 +64,20 @@ namespace :deploy do
   before "deploy", "deploy:check_revision"
   after "deploy", "deploy:set_ruby_version"
 end
+
+namespace :ss do
+  namespace :blog do
+    task :update, roles: :app do
+      run "cd /var/www/blog && git pull origin master"
+      run "kill $(ps aux | grep 'jekyll' | awk '{print $2}')"
+      # God gem should respawn this process
+    end
+    task :stop, roles: :app do
+      run "kill $(ps aux | grep 'god' | awk '{print $2}')"
+    end
+    task :start, roles: :app do
+      default_run_options[:shell] = '/bin/bash --login'
+      run "/var/www/blog/monitoring/start_god.sh"
+    end
+  end
+end
