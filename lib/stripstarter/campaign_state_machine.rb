@@ -1,4 +1,4 @@
-module CampaignStateMachine
+module Stripstarter::CampaignStateMachine
   def self.included(base)
     base.class_eval do
       state_machine :status, :initial => :inactive do

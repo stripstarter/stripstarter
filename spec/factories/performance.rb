@@ -2,10 +2,10 @@ FactoryGirl.define do
   factory :performance do
   end
 
-  factory :performance_with_user,
+  factory :performance_with_performer,
     :class => Performance,
     :parent => :performance do
-      user { FactoryGirl.create(:user, role: 'performer') }
+      performer { FactoryGirl.create(:performer) }
     end
 
   factory :performance_with_campaign,
@@ -14,10 +14,10 @@ FactoryGirl.define do
       campaign { FactoryGirl.create(:campaign) }
     end
 
-  factory :performance_with_campaign_and_user,
+  factory :performance_with_campaign_and_performer,
     :class => Performance,
     :parent => :performance do
-      user { FactoryGirl.create(:user, role: 'performer') }
+      performer { FactoryGirl.create(:performer) }
       campaign { FactoryGirl.create(:campaign) }
     end
 end

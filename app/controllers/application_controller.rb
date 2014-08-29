@@ -22,4 +22,8 @@ class ApplicationController < ActionController::Base
     return @current_user if defined?(@current_user)
     @current_user = current_user_session && current_user_session.record
   end
+
+  def current_admin?
+    current_user && current_user.is_a?(Admin)
+  end
 end

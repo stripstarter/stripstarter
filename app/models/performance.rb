@@ -1,7 +1,6 @@
 class Performance < ActiveRecord::Base
 
-	belongs_to :user
+	belongs_to :performer
 	belongs_to :campaign
 
-  alias :performer :user
 end
