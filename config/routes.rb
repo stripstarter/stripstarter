@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   #############
 
   resources :campaigns
+  get '/campaigns/search' => 'campaigns#search', as: 'campaign_search'
 
   ############
   # Sessions #
@@ -14,6 +15,12 @@ Rails.application.routes.draw do
   resources :user_sessions
   get 'login' => 'user_sessions#new', as: 'login'
   get 'logout' => 'user_sessions#destroy', as: 'logout'
+
+  ##############
+  # Performers #
+  ##############
+
+  get '/performers/search' => 'performers#search', as: 'performer_search'
 
   #########
   # Users #
@@ -32,5 +39,6 @@ Rails.application.routes.draw do
   get '/users/:user_id/pledges/new' => 'pledges#new'
   post '/pledges' => 'pledges#create'
   get '/users/:user_id/pledges' => 'pledges#index'
+
 
 end

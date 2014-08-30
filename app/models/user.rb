@@ -19,4 +19,8 @@ class User < ActiveRecord::Base
                        :allow_blank => true,
                        :on => :update
 
+  def name
+    [first_name, last_name].join(" ")
+  end
+
 end

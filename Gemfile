@@ -29,6 +29,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'state_machine'
 gem 'scrypt'
 gem 'active_model_serializers'
+gem 'rack-contrib'
+gem 'soulmate', require: 'soulmate/server'
 
 group :development, :test do
   gem 'factory_girl_rails', require: false
