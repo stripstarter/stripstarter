@@ -80,4 +80,10 @@ namespace :ss do
       run "/var/www/blog/monitoring/start_god.sh"
     end
   end
+
+  namespace :soulmate do
+    task :reset, roles: :app do
+      run "cd /var/www/stripstarter.us/current && /usr/bin/env rake 'ss:soulmate:reset' RAILS_ENV=production"
+    end
+  end
 end
