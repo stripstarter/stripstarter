@@ -35,7 +35,7 @@ class Campaign < ActiveRecord::Base
   # Searching #
   #############
 
-  after_save :load_into_soulmate
+  after_save :load_into_soulmate, unless: ->(){ Rails.env.test? }
 
   def load_into_soulmate
     loader = Soulmate::Loader.new("campaign")
