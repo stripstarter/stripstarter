@@ -73,7 +73,7 @@ class CampaignsController < ApplicationController
   end
 
   def search
-    render json: Campaign.search(params["terms"])
+    render json: Campaign.search(params["term"])
   end
 
   private
