@@ -7,6 +7,12 @@ RSpec.describe Pledger, :type => :model do
       @pledger = FactoryGirl.create(:pledger_with_pledge_and_campaign)
     end
 
+    after(:all) do
+      ActiveRecord::Base.descendants.find_each do |klass|
+        klass.find_each(&:destroy)
+      end
+    end
+
     it "has campaigns through pledges" do
       expect(@pledger.campaigns.first).to be_a Campaign
     end

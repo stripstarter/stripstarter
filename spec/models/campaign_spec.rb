@@ -43,4 +43,26 @@ RSpec.describe Campaign, :type => :model do
     end
   end
 
+  context "scopes" do
+
+    before(:each) { Campaign.find_each(&:destroy) }
+    it "#top" do
+      campaign1 = FactoryGirl.create(:campaign_with_pledge)
+      campaign2 = FactoryGirl.create(:campaign_with_pledge)
+      campaign2.pledges << FactoryGirl.create(:pledge_with_pledger)
+      ordered_campaigns = Campaign.top
+      expect(ordered_campaigns.first).to eq(campaign2)
+      expect(ordered_campaigns.last).to eq(campaign1)
+    end
+
+    it "#newest" do
+      campaign1 = FactoryGirl.create(:campaign_with_pledge)
+      sleep 0.1
+      campaign2 = FactoryGirl.create(:campaign_with_pledge)
+      newest_campaigns = Campaign.newest
+      expect(newest_campaigns.first).to eq(campaign2)
+      expect(newest_campaigns.last).to eq(campaign1)
+    end
+  end
+
 end
