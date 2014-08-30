@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   # Campaigns #
   #############
 
-  resources :campaigns
   get '/campaigns/search' => 'campaigns#search', as: 'campaign_search'
+  resources :campaigns
 
   ############
   # Sessions #

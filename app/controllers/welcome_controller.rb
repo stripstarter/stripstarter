@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
 	def index
+    @top_campaigns = Campaign.top(5)
 	end
 
   def search

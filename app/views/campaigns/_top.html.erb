@@ -1,0 +1,17 @@
+<h3>Top Campaigns</h3>
+
+<br />
+<br />
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Amount</th>
+  </tr>
+  <% @top_campaigns.each do |campaign| %>
+    <tr>
+      <td><%= link_to "#{campaign.name}", campaign_path(campaign) %></td>
+      <td><%= campaign.amount %></td>
+    </tr>
+  <% end %>
+</table>

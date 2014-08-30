@@ -1,4 +1,4 @@
-Please enter the name of a performer or campaign:
+Search by performer or campaign:
 <%= text_field_tag 'search_box' %>
 
 <script type="text/javascript">
@@ -28,3 +28,5 @@ Please enter the name of a performer or campaign:
       };
   });
 </script>
+
+<%= render 'campaigns/top' if defined?(@top_campaigns) %>
