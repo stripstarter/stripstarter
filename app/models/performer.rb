@@ -29,7 +29,8 @@ class Performer < User
         "id" => match["id"],
         "label" => "performer",
         "value" => match["term"],
-        "image" => match["image"]
+        "image" => match["image"],
+        "url" => match["url"]
       }
     end
   end
