@@ -10,7 +10,7 @@
 </head>
 <body>
 
-  <div id="container">
+  <div id="container" style="float:right;">
     <div id="user_nav">
       <% if current_user %>
         <%= link_to "Edit Profile", edit_user_path(:current) %> |
@@ -21,6 +21,11 @@
       <% end %>
     </div>
   </div>
+
+  <strong><%= link_to "Stripstarter", root_path %>  : Putting the 'fun' in crowdfunded pornography</strong>
+  <br />
+  <br />
+
 
 <%= yield %>
 
