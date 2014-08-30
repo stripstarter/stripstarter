@@ -4,6 +4,8 @@ class CampaignsController < ApplicationController
   # GET /campaigns.json
   def index
     @campaigns = Campaign.all
+    @top_campaigns = Campaign.top(5)
+    @newest_campaigns = Campaign.newest.first(5)
     respond_to do |format|
       format.json { render :json => @campaigns }
       format.html
