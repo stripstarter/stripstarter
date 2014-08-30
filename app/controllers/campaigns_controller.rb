@@ -72,6 +72,10 @@ class CampaignsController < ApplicationController
     end
   end
 
+  def search
+    render json: Campaign.search(params["term"])
+  end
+
   private
 
     # Never trust parameters from the scary internet, only allow the white list through.

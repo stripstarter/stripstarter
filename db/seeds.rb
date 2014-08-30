@@ -10,8 +10,14 @@ require 'factory_girl'
 
 require Rails.root.join('spec/factories')
 
-10.times do
+puts "Creating 100 campaigns with pledgers and performers"
+100.times do
 	FactoryGirl.create(:campaign_with_pledge_and_performance)
+end
+
+puts "Creating 100 performers"
+100.times do
+  FactoryGirl.create(:performer)
 end
 
 FactoryGirl.create(:admin)
