@@ -1,26 +1,36 @@
-<h1>All Campaigns</h1>
+<strong>Search by campaign:</strong>
+<%= text_field_tag 'campaign_search' %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Amount Raised</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<script type="text/javascript">
+  $(function() {
 
-  <tbody>
-    <% @campaigns.each do |campaign| %>
-      <tr>
-        <td><%= campaign.name %></td>
-        <td><%= campaign.amount %></td>
-        <td><%= link_to 'Show', campaign %></td>
-        <td><%= link_to 'Edit', edit_campaign_path(campaign) %></td>
-        <td><%= link_to 'Destroy', campaign, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  $('#campaign_search').autocomplete({
+          minLength: 2,
+          source: '<%= campaign_search_path(:json) %>',
+
+          focus: function(event, ui) {
+              $('#campaign_search').val(ui.item.value);
+              return false;
+          },
+
+          select: function(event, ui) {
+              $('#campaign_search').val(ui.item.value);
+              $('#link_origin_id').val(ui.item.id);
+                      return false;
+                  }
+              })
+
+      .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+          return $( "<li></li>" )
+              .data( "autocomplete-item", item )
+              .append( "<a href=" + item.url + ">" + item.value +  "</a>" )
+              .appendTo( ul );
+      };
+  });
+</script>
+
+<%= render 'top' if defined?(@top_campaigns) %>
+<%= render 'newest' if defined?(@newest_campaigns) %>
 
 <br>
 

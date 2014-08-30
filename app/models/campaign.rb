@@ -20,6 +20,17 @@ class Campaign < ActiveRecord::Base
     pledgers + performers
   end
 
+  ##########
+  # Scopes #
+  ##########
+
+  def self.top(num = nil)
+    _num ||= 5
+    includes(:pledges).all.sort_by(&:amount).first(_num)
+  end
+
+  scope :newest, lambda { order("campaigns.created_at ASC") }
+
   #############
   # Searching #
   #############
