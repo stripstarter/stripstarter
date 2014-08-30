@@ -31,10 +31,10 @@ gem 'scrypt'
 gem 'active_model_serializers'
 gem 'rack-contrib'
 gem 'soulmate', require: 'soulmate/server'
+gem 'faker'
 
 group :development, :test do
   gem 'factory_girl_rails', require: false
-  gem 'faker'
   gem 'pry'
   gem 'rspec-rails'
 end
