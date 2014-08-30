@@ -20,7 +20,7 @@ class Performer < User
 
   def self.search(term)
     matches = Soulmate::Matcher.new('pledger').matches_for_term(term)
-    matches.collect {|match| {"id" => match["id"], "name" => match["term"], "url" => match["url"] } }
+    matches.collect {|match| {"id" => match["id"], "label" => "name", "value" => match["term"] } }
   end
 
 end

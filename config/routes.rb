@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   ##############
 
   get '/performers/search' => 'performers#search', as: 'performer_search'
+  get '/performers/:performer_id' => 'performers#show'
 
   #########
   # Users #
@@ -28,7 +29,6 @@ Rails.application.routes.draw do
 
   resources :users, except: :index
   get '/pledgers/:id' => 'users#show'
-  get '/performers/:id' => 'users#show'
   resources :pledgers, controller: "users", type: "Pledger"
   resources :performers, controller: "users", type: "Performer"
 
