@@ -61,23 +61,33 @@ namespace :deploy do
     ruby_version = File.read(".ruby-version").strip
     run "rvm use #{ruby_version}"
   end
+
   before "deploy", "deploy:check_revision"
+
+  # Blog is too memory intensive to precompile assets
+  before "deploy", "ss:blog:stop" 
+  after "deploy", "ss:blog:start"
+
   after "deploy", "deploy:set_ruby_version"
+  after "deploy", "deploy:restart" # In case Unicorn is being a bitch
 end
 
 namespace :ss do
   namespace :blog do
     task :update, roles: :app do
       run "cd /var/www/blog && git pull origin master"
-      run "kill $(ps aux | grep 'jekyll' | awk '{print $2}')"
+      run "kill $(ps aux | grep 'jekyll' | awk '{print $2}')" rescue nil
       # God gem should respawn this process
     end
     task :stop, roles: :app do
-      run "kill $(ps aux | grep 'god' | awk '{print $2}')"
+      puts "Stopping blog..."
+      run "kill $(ps aux | grep 'god' | awk '{print $2}')" rescue nil
+      run "kill $(ps aux | grep 'jekyll' | awk '{print $2}')" rescue nil
     end
     task :start, roles: :app do
+      puts "Starting blog..."
       default_run_options[:shell] = '/bin/bash --login'
-      run "/var/www/blog/monitoring/start_god.sh"
+      run "god -c /var/www/blog/monitoring/keepalive.god"
     end
   end
 
