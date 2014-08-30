@@ -28,12 +28,22 @@ class Campaign < ActiveRecord::Base
 
   def load_into_soulmate
     loader = Soulmate::Loader.new("campaign")
-    loader.add("term" => name, "id" => id)
+    loader.add({
+      "term" => name,
+      "id" => id,
+      "url" => Rails.application.routes.url_helpers.campaign_path(self)})
   end
 
   def self.search(term)
     matches = Soulmate::Matcher.new('campaign').matches_for_term(term)
-    matches.collect {|match| {"id" => match["id"], "label" => match["term"], "value" => match["term"] } }
+    matches.collect do |match|
+      {
+        "id" => match["id"],
+        "label" => "campaign",
+        "value" => match["term"],
+        "url" => match["url"]
+      }
+    end
   end
 
   #############

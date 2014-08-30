@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'welcome#index'
+  get '/search' => 'welcome#search', as: 'search'
 
   #############
   # Campaigns #
@@ -13,8 +14,8 @@ Rails.application.routes.draw do
   ############
 
   resources :user_sessions
-  get 'login' => 'user_sessions#new', as: 'login'
-  get 'logout' => 'user_sessions#destroy', as: 'logout'
+  get '/login' => 'user_sessions#new', as: 'login'
+  get '/logout' => 'user_sessions#destroy', as: 'logout'
 
   ##############
   # Performers #
