@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   ###########
 
   get '/users/:user_id/pledges/new' => 'pledges#new'
+  get '/pledgers/:user_id/pledges/new' => 'pledges#new'
   post '/pledges' => 'pledges#create'
   get '/users/:user_id/pledges' => 'pledges#index'
 

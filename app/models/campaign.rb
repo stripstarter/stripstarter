@@ -26,10 +26,10 @@ class Campaign < ActiveRecord::Base
 
   def self.top(num = nil)
     _num ||= 5
-    includes(:pledges).all.sort_by(&:amount).first(_num)
+    includes(:pledges).all.sort_by(&:amount).last(_num).reverse
   end
 
-  scope :newest, lambda { order("campaigns.created_at ASC") }
+  scope :newest, lambda { order("campaigns.created_at DESC") }
 
   #############
   # Searching #
@@ -62,7 +62,7 @@ class Campaign < ActiveRecord::Base
   def amount
     pledges.collect do |pledge|
       pledge.amount.to_i
-    end.inject(:+)
+    end.inject(:+).to_i
   end
   
 end

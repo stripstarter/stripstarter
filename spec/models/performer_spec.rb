@@ -7,6 +7,12 @@ RSpec.describe Performer, :type => :model do
       @performer = FactoryGirl.create(:performer_with_performance_and_campaign)
     end
 
+    after(:all) do
+      ActiveRecord::Base.descendants.find_each do |klass|
+        klass.find_each(&:destroy)
+      end
+    end
+
     it "has campaigns through performances" do
       expect(@performer.campaigns.first).to be_a Campaign
     end
