@@ -34,6 +34,7 @@ gem 'soulmate', require: 'soulmate/server'
 gem 'faker'
 gem 'twitter-bootstrap-rails'
 gem 'less-rails'
+gem 'sidekiq'
 
 group :development, :test do
   gem 'factory_girl_rails', require: false
