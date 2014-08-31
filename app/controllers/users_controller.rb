@@ -1,5 +1,14 @@
 class UsersController < ApplicationController
 
+  def index
+    _rand = rand(Performer.count - 5)
+    @performers = Performer.offset(_rand).first(5)
+    respond_to do |format|
+      format.html { render "performers/index" }
+      format.json { render json: @performers, root: false }
+    end
+  end
+
   def show
     @user = current_user
     respond_to do |format|
