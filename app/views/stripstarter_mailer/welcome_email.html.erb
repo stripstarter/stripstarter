@@ -3,7 +3,7 @@
   <body>
     <h1>Welcome to <a href="http://stripstarter.us">Stripstarter!</a></h1>
     <br />
-    <p>Thanks for registering!</p>
+    <p><%= @user.first_name %>, thanks for registering.  Check out your sweet <%= link_to "profile", user_path(@user) %>!</p>
     <br />
     <h3>What is Stripstarter?</h3>
     <br />
