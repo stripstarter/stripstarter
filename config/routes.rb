@@ -52,5 +52,4 @@ Rails.application.routes.draw do
   post '/pledges' => 'pledges#create'
   get '/users/:user_id/pledges' => 'pledges#index'
 
-
 end

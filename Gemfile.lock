@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/basecamp/mail_view.git
+  revision: bc6ab46866a1544cb2c40877142087b0898485eb
+  specs:
+    mail_view (2.0.4)
+      tilt
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -249,6 +256,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   less-rails
+  mail_view!
   pg
   pry
   rack-contrib
