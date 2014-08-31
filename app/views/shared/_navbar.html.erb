@@ -16,14 +16,13 @@
       <ul class="nav navbar-nav">
         <li class="active"><%= link_to "Campaigns", campaigns_path %></li>
         <li><%= link_to "Performers", performers_path %></li>
-        <li><%= link_to "Blog", "http://" + (
-          Rails.env.production? ? "blog.stripstarter.us" : "blog.dev"
-        ) %></li>
+        <li><%= link_to "About", about_path %></li>
+        <li><%= link_to "Blog", blog_path %></li>
       </ul>
-      <div class="navbar-form navbar-left" role="search">
-        <%= text_field_tag 'search_box', nil, placeholder: "Search" %>
-      </div>
       <ul class="nav navbar-nav navbar-right">
+        <li class="navbar-form navbar-left" role="search">
+          <%= text_field_tag 'search_box', nil, placeholder: "Search" %>
+        </li>
         <% if current_user %>
             <li><%= link_to "Edit Profile", edit_user_path(:current) %></li>
             <li><%= link_to "Logout", logout_path %></li>

@@ -2,6 +2,17 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get '/search' => 'welcome#search', as: 'search'
 
+  ########
+  # Blog #
+  ########
+
+  get "/blog" => redirect( "http://" +
+      (Rails.env.production? ? "blog.stripstarter.us" : "blog.dev") 
+    ), :as => :blog
+  get "/blog/about" => redirect( "http://" +
+      (Rails.env.production? ? "blog.stripstarter.us/about" : "blog.dev/about") 
+    ), :as => :about
+
   #############
   # Campaigns #
   #############
