@@ -36,6 +36,7 @@ gem 'twitter-bootstrap-rails'
 gem 'less-rails'
 gem 'sidekiq'
 gem 'mail_view', :git => 'https://github.com/basecamp/mail_view.git'
+gem 'configreader'
 
 group :development, :test do
   gem 'factory_girl_rails', require: false

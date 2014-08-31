@@ -1,0 +1,6 @@
+defaults:
+  gmail_password: ""
+
+production:
+  secret_key_base: "af703ad2e13e374c9d5c4a35a0e6546e06d466d58c11881dd187ce81a2c281039ec981666e6e5c8034d777edca6e3e111db4edf09c42227e73d0668c98a14ed8"
+  gmail_password: ""
