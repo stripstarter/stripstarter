@@ -9,7 +9,7 @@ if Rails.env.development? || Rails.env.production?
     port: "587",   # NOTE: upgrade to use 465 for ssl connections
     domain: "stripstarter.us",
     authentication: :plain,
-    user_name: "stripstarter",
+    user_name: SS_CONFIG.gmail_address,
     password: SS_CONFIG.gmail_password
   }
 end
