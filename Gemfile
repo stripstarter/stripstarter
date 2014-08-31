@@ -32,6 +32,8 @@ gem 'active_model_serializers'
 gem 'rack-contrib'
 gem 'soulmate', require: 'soulmate/server'
 gem 'faker'
+gem 'twitter-bootstrap-rails'
+gem 'less-rails'
 
 group :development, :test do
   gem 'factory_girl_rails', require: false
