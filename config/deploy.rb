@@ -61,11 +61,15 @@ namespace :deploy do
     ruby_version = File.read(".ruby-version").strip
     run "rvm use #{ruby_version}"
   end
+  task :precompile_assets, roles: :app do
+    run "cd /var/www/stripstarter.us/current && /usr/bin/env rake 'assets:precompile' RAILS_ENV=production"
+  end
 
   before "deploy", "deploy:check_revision"
 
   # Blog is too memory intensive to precompile assets
   before "deploy", "ss:blog:stop" 
+  # after "deploy", "deploy:precompile_assets"
   after "deploy", "ss:blog:start"
 
   after "deploy", "deploy:set_ruby_version"
