@@ -6,3 +6,5 @@ class StripstarterMailer < ActionMailer::Base
     @user = User.find(user_id)
     mail(to: @user.email, subject: "Welcome to Stripstarter!")
   end
+  
+end
