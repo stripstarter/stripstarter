@@ -29,7 +29,6 @@ Rails.application.routes.draw do
   #########
 
   resources :users, except: :index
-  get '/pledgers/:id' => 'users#show'
   resources :pledgers, controller: "users", type: "Pledger"
   resources :performers, controller: "users", type: "Performer"
 

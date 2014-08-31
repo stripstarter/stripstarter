@@ -1,28 +1,21 @@
-<button>
-  <%= link_to 'New Campaign', new_campaign_path %>
-</button>
-
-<br />
-<br />
-
-<%= text_field_tag 'campaign_search', nil, placeholder: "Find a campaign..." %>
+<%= text_field_tag 'performer_search', nil, placeholder: "Find a performer..." %>
 
 <script type="text/javascript">
   $(function() {
 
     $('#search_box').hide();
 
-    $('#campaign_search').autocomplete({
+    $('#performer_search').autocomplete({
       minLength: 2,
-      source: '<%= campaign_search_path(:json) %>',
+      source: '<%= performer_search_path(:json) %>',
 
       focus: function(event, ui) {
-        $('#campaign_search').val(ui.item.value);
+        $('#performer_search').val(ui.item.value);
         return false;
       },
 
       select: function(event, ui) {
-        $('#campaign_search').val(ui.item.value);
+        $('#performer_search').val(ui.item.value);
         $('#link_origin_id').val(ui.item.id);
         return false;
       }
@@ -36,5 +29,9 @@
   });
 </script>
 
-<%= render 'top' if defined?(@top_campaigns) %>
-<%= render 'newest' if defined?(@newest_campaigns) %>
+<h3>Some performers</h3>
+
+<% @performers.each do |performer| %>
+  <%= link_to "#{performer.name}", performer_path(performer) %>
+  <br />
+<% end %>
