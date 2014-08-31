@@ -5,13 +5,13 @@
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Amount</th>
+    <th></th>
+    <th></th>
   </tr>
   <% @newest_campaigns.each do |campaign| %>
     <tr>
       <td><%= link_to "#{campaign.name}", campaign_path(campaign) %></td>
-      <td><%= campaign.amount %></td>
+      <td><%= campaign.created_at.strftime("%B %d, %Y") %></td>
     </tr>
   <% end %>
 </table>
