@@ -25,10 +25,15 @@ All code in this repository is released under the [Do What The Fuck You Want lic
 #### First install...
 
 1.  Ruby 2.x.x
+
 2.  Rails 4
+
 3.  Postgres 9.x
+
 4.  [Redis](http://redis.io)
+
 5.  [Sidekiq](https://github.com/mperham/sidekiq) (optional)
+
 6.  [Pow](http://pow.cx/) (optional)
 
 #### And then...
