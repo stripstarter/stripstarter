@@ -22,7 +22,16 @@ All code in this repository is released under the [Do What The Fuck You Want lic
 
 ## Build instructions
 
-* Ruby >= 2.0.0, Rails >= 4.0.0, Postgres >= 9.0
+#### First install...
+
+1.  Ruby 2.x.x
+2.  Rails 4
+3.  Postgres 9.x
+4.  [Redis](http://redis.io)
+5.  [Sidekiq](https://github.com/mperham/sidekiq) (optional)
+6.  [Pow](http://pow.cx/) (optional)
+
+#### And then...
 
 1.  Fork this repo and `git clone` it on your machine.
 
@@ -32,16 +41,18 @@ All code in this repository is released under the [Do What The Fuck You Want lic
 
 4.  Copy `config/secrets.yml.example` to `config/secrets.yml` and fill it in with some secret keys (`rake secret` to get secrets, yo)
 
-5.  Generate an ssh key (preferably in `~/.ssh/id_rsa` or `~/.ssh/stripstarter`); email the public key to stripstarter [at] gmail [dot] com to get it put on the server.  If you put the key somewhere else, you'll need to update `config/deploy/production.rb` with the location for capistrano deployments.
+5.  `bundle install`
 
-6. `bundle exec rake db:create` and `bundle exec rake db:seed`
+6. `bundle exec rake db:create`, `bundle exec rake db:migrate` and `bundle exec rake db:seed`
 
-7.  `rails s` in the main directory for the local server; `bundle exec cap deploy` to deploy the latest version of this repo to the server.
+7.  Follow [pow's instructions](http://pow.cx/) if using Pow or just do `bundle exec rails s` in the app directory.
+
+8.  Read the [wiki](http://github.com/stripstarter/stripstarter/wiki)!
 
 
 ## Best practices
 
-1.  Push your changes to your fork; make a PR into the main repo; wait for SOMEONE ELSE to code review and merge in.
+1.  Push your changes to your fork; make a PR into the main repo; wait for someone else to code review and merge in.
 
 2.  Two-space indentation on all files, please.
 
@@ -52,10 +63,10 @@ All code in this repository is released under the [Do What The Fuck You Want lic
 
 1.  Fork the repo into your own account
 
-2.  Push branches to your repo and make PRs into the main repo's master branch
+2.  Push branches to your repo and make PRs against the main repo's master branch
 
 #### Anonymity
 
-If you don't want to be publicly associated with this project, but still want to contribute, send an email to stripstarter [at] gmail [dot] com with your public key and I will add it to the stripstarter GitHub account.  That way, you can push changes directly to the repo as the stripstarter GitHub user (not affiliated with your actual account).
+If you don't want to be publicly associated with this project but still want to contribute, send an email to stripstarter [at] gmail [dot] com with your public key so you can commit as the Stripstarter user.
 
 See [the wiki page](https://github.com/stripstarter/stripstarter/wiki/Command-line-shortcuts) for a simple commit alias.
