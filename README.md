@@ -20,6 +20,9 @@ For any additional information, please email stripstarter [at] gmail [dot] com.
 
 All code in this repository is released under the [Do What The Fuck You Want license](http://www.wtfpl.net/)
 
+![License](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-1.png)
+
+
 ## Build instructions
 
 #### First install...
