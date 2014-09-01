@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/seuros/capistrano-sidekiq.git
+  revision: 807ede255740b57f11b04c0929e6f8a04cf35951
+  specs:
+    capistrano-sidekiq (0.3.6)
+      capistrano
+      sidekiq
+
+GIT
   remote: https://github.com/basecamp/mail_view.git
   revision: bc6ab46866a1544cb2c40877142087b0898485eb
   specs:
@@ -252,6 +260,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   capistrano (~> 2.15.0)
+  capistrano-sidekiq!
   coffee-rails (~> 4.0.0)
   configreader
   factory_girl_rails
