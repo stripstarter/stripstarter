@@ -75,3 +75,5 @@ All code in this repository is released under the [Do What The Fuck You Want lic
 If you don't want to be publicly associated with this project but still want to contribute, send an email to stripstarter [at] gmail [dot] com with your public key so you can commit as the Stripstarter user.
 
 See [the wiki page](https://github.com/stripstarter/stripstarter/wiki/Command-line-shortcuts) for a simple commit alias.
+
+![License](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-1.png)
