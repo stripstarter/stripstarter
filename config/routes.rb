@@ -1,3 +1,6 @@
+require 'admin_constraint'
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   root 'welcome#index'
   get '/search' => 'welcome#search', as: 'search'
@@ -51,5 +54,13 @@ Rails.application.routes.draw do
   get '/pledgers/:user_id/pledges/new' => 'pledges#new'
   post '/pledges' => 'pledges#create'
   get '/users/:user_id/pledges' => 'pledges#index'
+
+  ######################
+  # Sidekiq Monitoring #
+  ######################
+
+  constraints(AdminConstraint) do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
 end
