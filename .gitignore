@@ -17,5 +17,4 @@
 /config/database.yml
 /config/secrets.yml
 
-/public/assets/
 /config/site_production.yml
