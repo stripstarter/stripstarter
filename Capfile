@@ -1,7 +1,10 @@
 load 'deploy'
-load 'deploy/assets'
+# load 'deploy/assets'
 load 'config/deploy'
 load 'config/deploy/production'
+
+require 'capistrano/sidekiq'
+# require 'capistrano/sidekiq/monit'
 
 
 # Load DSL and Setup Up Stages
