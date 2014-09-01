@@ -35,6 +35,7 @@ gem 'faker'
 gem 'twitter-bootstrap-rails'
 gem 'less-rails'
 gem 'sidekiq'
+gem 'capistrano-sidekiq' , github: 'seuros/capistrano-sidekiq'
 gem 'mail_view', :git => 'https://github.com/basecamp/mail_view.git'
 gem 'configreader'
 
