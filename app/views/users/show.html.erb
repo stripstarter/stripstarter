@@ -1,29 +1,39 @@
-<h1> Attributes </h1>
-<table>
-  <tr>
-    <th>Attribute</th>
-    <th>Value</th>
-  </tr>
-  <% @user.attributes.slice("first_name", "last_name").each do |key, value| %>
-    <tr>
-      <td><%= key %></td>
-      <td><%= value %></td>
-    </tr>
-  <% end %>
-</table>
+<%- model_class = User -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<% if @user.is_a? Pledger %>
-  <h1>Pledges</h1>
-  <table>
-    <tr>
-      <th>Campaign</th>
-      <th>Value</th>
-    </tr>
-    <% @user.pledges.each do |pledge| %>
-      <tr>
-        <td><%= pledge.campaign.name %></td>
-        <td><%= pledge.amount %></td>
-      </tr>
-    <% end %>
-  </table>
-<% end %>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
+  <dd><%= @user.email %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:first_name) %>:</strong></dt>
+  <dd><%= @user.first_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:last_name) %>:</strong></dt>
+  <dd><%= @user.last_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:crypted_password) %>:</strong></dt>
+  <dd><%= @user.crypted_password %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:password_salt) %>:</strong></dt>
+  <dd><%= @user.password_salt %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:persistence_token) %>:</strong></dt>
+  <dd><%= @user.persistence_token %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:last_request_at) %>:</strong></dt>
+  <dd><%= @user.last_request_at %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:current_login_at) %>:</strong></dt>
+  <dd><%= @user.current_login_at %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:last_login_at) %>:</strong></dt>
+  <dd><%= @user.last_login_at %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:current_login_ip) %>:</strong></dt>
+  <dd><%= @user.current_login_ip %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:last_login_ip) %>:</strong></dt>
+  <dd><%= @user.last_login_ip %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:type) %>:</strong></dt>
+  <dd><%= @user.type %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:image) %>:</strong></dt>
+  <dd><%= @user.image %></dd>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              root_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_user_path(@user), :class => 'btn btn-default' %>
+
