@@ -12,8 +12,7 @@ class User < ActiveRecord::Base
                       square: '200x200#',
                       medium: '300x300>'
                     },
-                    default_url: "missing.png",
-                    url: "/system/avatar/:id/:style/:filename",
+                    # url: "/system/avatar/:id/:style/:filename",
                     path: ":rails_root/public/system/avatar/:id/:style/:filename"
 
   attr_accessor :avatar_file_name,
