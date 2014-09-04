@@ -32,10 +32,12 @@ RSpec.describe User, :type => :model do
       expect(user.avatar.url).to_not match(/missing\.png/)
     end
     it "should give an amazon URL if s3 is configured" do
-      setup_for_amazon!
-      user = FactoryGirl.create(:user)
-      expect(user.avatar.url).to match(/amazon/)
-      teardown_from_amazon!
+      if ENV['TEST_ENV'] != 'travis'
+        setup_for_amazon!
+        user = FactoryGirl.create(:user)
+        expect(user.avatar.url).to match(/amazon/)
+        teardown_from_amazon!
+      end
     end
     it "should give a nil avatar a missing.png address" do
       user = FactoryGirl.create(:user)

@@ -3,6 +3,8 @@ rvm:
   - "2.0.0"
   - "2.1.2"
 
+env: TEST_ENV=travis
+
 before_script: cp config/database.yml.example config/database.yml; cp config/secrets.yml.example config/secrets.yml
 script: bundle exec rspec spec
 bundler_args: --without production
