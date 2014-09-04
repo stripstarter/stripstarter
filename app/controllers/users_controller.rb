@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:notice] = "Registration successful."
       StripstarterMailer.delay.welcome_email(@user.id)
-      redirect_to root_url
+      redirect_to user_path(@user)
     else
       render :action => 'new'
     end
