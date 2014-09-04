@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
     medium: '300x300>'
   }
 
-  attr_accessible :avatar_file_name
+  attr_accessor :avatar_file_name
 
   validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
