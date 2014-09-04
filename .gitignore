@@ -18,3 +18,4 @@
 /config/secrets.yml
 
 /config/site_production.yml
+/public/system

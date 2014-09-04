@@ -5,7 +5,8 @@ defaults:
   twitter_password:
   amazon_account: "stripstarter@gmail.com"
   amazon_password: ""
-  amazon_access_key_id: "stripstarter"
+  amazon_bucket: "ssmedia1"
+  amazon_access_key_id: ""
   amazon_secret_access_key: ""
 
 
