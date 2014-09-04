@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140828225231) do
+ActiveRecord::Schema.define(version: 20140904001639) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "campaign_feature_joins", force: true do |t|
     t.integer  "campaign_id"
@@ -58,13 +61,17 @@ ActiveRecord::Schema.define(version: 20140828225231) do
     t.string   "crypted_password"
     t.string   "password_salt"
     t.string   "persistence_token"
-    t.integer  "failed_login_count", default: 0,         null: false
+    t.integer  "failed_login_count",  default: 0,         null: false
     t.datetime "last_request_at"
     t.datetime "current_login_at"
     t.datetime "last_login_at"
     t.string   "current_login_ip"
     t.string   "last_login_ip"
-    t.string   "type",               default: "Pledger"
+    t.string   "type",                default: "Pledger"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
 end
