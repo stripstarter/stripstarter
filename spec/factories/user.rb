@@ -6,5 +6,6 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     password { "password" }
     password_confirmation { "password" }
+    avatar { fixture_file_upload(Rails.root.join('spec', 'fixtures', 'test_avatar.png'), 'image/png') }
   end
 end
