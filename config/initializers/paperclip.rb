@@ -13,7 +13,7 @@ if Rails.env.production? || Rails.env.development?
 else
   Paperclip::Attachment.default_options.merge!(
     :url => "/system/avatar/:id/:style/:filename",
-    :path => "/avatar/:id/:style/:filename",
+    :path => ":rails_root/public/system/avatar/:id/:style/:filename",
     :default_url => "missing.png",
   )
 end

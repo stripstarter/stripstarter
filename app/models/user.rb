@@ -11,13 +11,7 @@ class User < ActiveRecord::Base
                       thumb: '100x100>',
                       square: '200x200#',
                       medium: '300x300>'
-                    },
-                    # url: "/system/avatar/:id/:style/:filename",
-                    path: ":rails_root/public/system/avatar/:id/:style/:filename"
-
-  attr_accessor :avatar_file_name,
-                :avatar_content_type,
-                :avatar_file_size
+                    }
 
   validates_attachment  :avatar,
                         :content_type => { :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"] },
