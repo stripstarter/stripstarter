@@ -6,16 +6,22 @@ class User < ActiveRecord::Base
   # Avatar #
   ##########
 
-  has_attached_file :avatar, styles: {
-    thumb: '100x100>',
-    square: '200x200#',
-    medium: '300x300>'
-  }
+  has_attached_file :avatar,
+                    styles: {
+                      thumb: '100x100>',
+                      square: '200x200#',
+                      medium: '300x300>'
+                    },
+                    default_url: "missing.png",
+                    url: "/system/avatar/:id/:style/:filename",
+                    path: ":rails_root/public/system/avatar/:id/:style/:filename"
 
   attr_accessor :avatar_file_name,
                 :avatar_content_type
 
-  validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+  validates_attachment  :avatar,
+                        :content_type => { :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"] },
+                        :size => { :in => 0..1000.kilobytes }
 
   ###############
   # Travis hack #
