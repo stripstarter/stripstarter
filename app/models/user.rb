@@ -17,7 +17,8 @@ class User < ActiveRecord::Base
                     path: ":rails_root/public/system/avatar/:id/:style/:filename"
 
   attr_accessor :avatar_file_name,
-                :avatar_content_type
+                :avatar_content_type,
+                :avatar_file_size
 
   validates_attachment  :avatar,
                         :content_type => { :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"] },
