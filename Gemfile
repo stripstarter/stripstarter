@@ -45,6 +45,8 @@ group :development, :test do
   gem 'factory_girl_rails', require: false
   gem 'pry'
   gem 'rspec-rails'
+  gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
+  gem 'pry-byebug'
 end
 
 group :development do
