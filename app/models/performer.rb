@@ -7,16 +7,6 @@ class Performer < User
   has_many :performances
   has_many :campaigns, through: :performances
 
-  ##########
-  # Avatar #
-  ##########
-
-  has_attached_file :avatar, styles: {
-    thumb: '100x100>',
-    square: '200x200#',
-    medium: '300x300>'
-  }
-
   #############
   # Searching #
   #############
