@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
 
   validates_attachment  :avatar,
                         :content_type => { :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"] },
-                        :size => { :in => 0..1000.kilobytes }
+                        :size => { :in => 0..2.megabytes }
 
   ###############
   # Travis hack #
