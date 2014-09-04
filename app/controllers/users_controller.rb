@@ -50,9 +50,10 @@ class UsersController < ApplicationController
 
   def user_params
     (params["user"] || params["pledger"] || params["performer"]).permit(
+      :avatar,
+      :email,
       :first_name,
       :last_name,
-      :email,
       :password,
       :password_confirmation,
       :role
