@@ -1,4 +1,4 @@
-class AddAvatarToUsers < ActiveRecord::Migration
+class AddAvatarToPerformers < ActiveRecord::Migration
   def self.up
     add_attachment :users, :avatar
   end
