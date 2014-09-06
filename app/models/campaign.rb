@@ -35,12 +35,18 @@ class Campaign < ActiveRecord::Base
   #############
 
   after_save :load_into_soulmate, unless: ->(){ Rails.env.test? }
+  before_destroy :remove_from_soulmate
+
+  def remove_from_soulmate
+    Soulmate::Loader.new("campaign").remove "id" => id
+  end
 
   def load_into_soulmate
     loader = Soulmate::Loader.new("campaign")
     loader.add({
-      "term" => name,
       "id" => id,
+      "term" => name,
+      "class" => self.class.name,
       "url" => Rails.application.routes.url_helpers.campaign_path(self)})
   end
 
@@ -49,8 +55,9 @@ class Campaign < ActiveRecord::Base
     matches.collect do |match|
       {
         "id" => match["id"],
-        "label" => "campaign",
         "value" => match["term"],
+        "class" => match["class"],
+        "avatar_url" => "",
         "url" => match["url"]
       }
     end
