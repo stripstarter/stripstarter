@@ -24,9 +24,8 @@ class Campaign < ActiveRecord::Base
   # Scopes #
   ##########
 
-  def self.top(num = nil)
-    _num ||= 5
-    includes(:pledges).all.sort_by(&:amount).last(_num).reverse
+  def self.top(num = 5)
+    includes(:pledges).all.sort_by(&:amount).last(num).reverse
   end
 
   scope :newest, lambda { order("campaigns.created_at DESC") }
