@@ -56,7 +56,7 @@ class UsersController < ApplicationController
       :last_name,
       :password,
       :password_confirmation,
-      :role
+      :type
     )
   end
 end

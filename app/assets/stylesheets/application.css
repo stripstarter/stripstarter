@@ -16,3 +16,8 @@
  */
 
 
+div.search-result, div.search-result > img {
+  height: 20px;
+  width: 20px;
+  float: left;
+}
