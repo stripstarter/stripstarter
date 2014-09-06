@@ -46,7 +46,7 @@ class Campaign < ActiveRecord::Base
     loader.add({
       "id" => id,
       "term" => name,
-      "class" => self.class.name,
+      "klass" => self.class.name,
       "url" => Rails.application.routes.url_helpers.campaign_path(self)})
   end
 
@@ -56,7 +56,7 @@ class Campaign < ActiveRecord::Base
       {
         "id" => match["id"],
         "value" => match["term"],
-        "class" => match["class"],
+        "klass" => match["klass"],
         "avatar_url" => "",
         "url" => match["url"]
       }

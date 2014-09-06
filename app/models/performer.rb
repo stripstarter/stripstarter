@@ -23,7 +23,7 @@ class Performer < User
     loader.add({
       "id" => id,
       "term" => name,
-      "class" => self.class.name,
+      "klass" => self.class.name,
       "avatar_url" => avatar.url(:thumb),
       "url" => Rails.application.routes.url_helpers.performer_path(self)})
   end
@@ -34,7 +34,7 @@ class Performer < User
       {
         "id" => match["id"],
         "value" => match["term"],
-        "class" => match["class"],
+        "klass" => match["klass"],
         "avatar_url" => match["avatar_url"],
         "url" => match["url"]
       }
