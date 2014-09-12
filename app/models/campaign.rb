@@ -24,9 +24,8 @@ class Campaign < ActiveRecord::Base
   # Scopes #
   ##########
 
-  def self.top(num = nil)
-    _num ||= 5
-    includes(:pledges).all.sort_by(&:amount).last(_num).reverse
+  def self.top(num = 5)
+    includes(:pledges).all.sort_by(&:amount).last(num).reverse
   end
 
   scope :newest, lambda { order("campaigns.created_at DESC") }
@@ -36,12 +35,18 @@ class Campaign < ActiveRecord::Base
   #############
 
   after_save :load_into_soulmate, unless: ->(){ Rails.env.test? }
+  before_destroy :remove_from_soulmate
+
+  def remove_from_soulmate
+    Soulmate::Loader.new("campaign").remove "id" => id
+  end
 
   def load_into_soulmate
     loader = Soulmate::Loader.new("campaign")
     loader.add({
-      "term" => name,
       "id" => id,
+      "term" => name,
+      "klass" => self.class.name,
       "url" => Rails.application.routes.url_helpers.campaign_path(self)})
   end
 
@@ -50,8 +55,9 @@ class Campaign < ActiveRecord::Base
     matches.collect do |match|
       {
         "id" => match["id"],
-        "label" => "campaign",
         "value" => match["term"],
+        "klass" => match["klass"],
+        "avatar_url" => "",
         "url" => match["url"]
       }
     end

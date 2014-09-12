@@ -12,24 +12,30 @@ class Performer < User
   #############
 
   after_save :load_into_soulmate, unless: ->(){ Rails.env.test? }
+  before_destroy :remove_from_soulmate
 
+  def remove_from_soulmate
+    Soulmate::Loader.new("performer").remove "id" => id
+  end
+  
   def load_into_soulmate
-    loader = Soulmate::Loader.new("pledger")
+    loader = Soulmate::Loader.new("performer")
     loader.add({
-      "term" => name,
       "id" => id,
-      "image" => "/test_avatar.png",
+      "term" => name,
+      "klass" => self.class.name,
+      "avatar_url" => avatar.url(:thumb),
       "url" => Rails.application.routes.url_helpers.performer_path(self)})
   end
 
   def self.search(term)
-    matches = Soulmate::Matcher.new('pledger').matches_for_term(term)
+    matches = Soulmate::Matcher.new('performer').matches_for_term(term)
     matches.collect do |match|
       {
         "id" => match["id"],
-        "label" => "performer",
         "value" => match["term"],
-        "image" => match["image"],
+        "klass" => match["klass"],
+        "avatar_url" => match["avatar_url"],
         "url" => match["url"]
       }
     end

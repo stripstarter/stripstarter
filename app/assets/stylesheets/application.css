@@ -16,3 +16,8 @@
  */
 
 
+img.search-result {
+  height: 20px;
+  width: 20px;
+  float: left;
+}

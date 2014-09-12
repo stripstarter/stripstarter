@@ -2,6 +2,21 @@ class User < ActiveRecord::Base
 
   acts_as_authentic
 
+  ##########
+  # Avatar #
+  ##########
+
+  has_attached_file :avatar,
+                    styles: {
+                      thumb: '100x100>',
+                      square: '200x200#',
+                      medium: '300x300>'
+                    }
+
+  validates_attachment  :avatar,
+                        :content_type => { :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"] },
+                        :size => { :in => 0..2.megabytes }
+
   ###############
   # Travis hack #
   ###############

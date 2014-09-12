@@ -38,11 +38,15 @@ gem 'sidekiq'
 gem 'capistrano-sidekiq' , github: 'seuros/capistrano-sidekiq'
 gem 'mail_view', :git => 'https://github.com/basecamp/mail_view.git'
 gem 'configreader'
+gem 'aws-sdk'
+gem 'paperclip'
 
 group :development, :test do
   gem 'factory_girl_rails', require: false
   gem 'pry'
   gem 'rspec-rails'
+  gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
+  gem 'pry-byebug'
 end
 
 group :development do
