@@ -65,10 +65,14 @@
         </div>
         <div class="col-lg-3">
           <div class="well sidebar-nav">
-            <h3><%= @user.name if @current_user  %></h3>
+            <% if current_user %>
+            <h3><%= current_user.name %></h3>
+            <% else %>
+            <h3>Welcome</h3>
+            <% end %>
             <ul class="nav nav-list">
               <li class="nav-header"></li>
-                <% if current_user %>
+                <% if current_user %> 
   								<li><%= link_to "Edit Profile", edit_user_path(:current) %> </li>
   								<li> <%= link_to "View Pofile", user_path(:current)  %></li>	
   								<li><%= link_to "Logout", logout_path %></li>

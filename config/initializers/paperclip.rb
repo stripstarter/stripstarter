@@ -1,4 +1,4 @@
-if Rails.env.production? || Rails.env.development?
+if Rails.env.production? # || Rails.env.development?
   Paperclip::Attachment.default_options.merge!(
     :storage => :s3,
     :path => "/avatar/:id/:style/:filename",
