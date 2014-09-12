@@ -53,6 +53,10 @@ group :development do
   gem 'spring'
   gem 'better_errors'
   gem 'binding_of_caller'
+  # gem "berkshelf", github: "berkshelf/berkshelf"
+  # gem "vagrant", github: "mitchellh/vagrant", tag: "v1.6.3"
+  # gem 'test-kitchen'
+  # gem 'kitchen-vagrant'
 end
 
 group :test do
