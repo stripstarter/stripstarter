@@ -1,18 +1,18 @@
 development:
   adapter: postgresql
   encoding: utf8
-  database: stripstarter
+  database: stripstarter_dev
   pool: 5
-  username: stripstarter
-  password: YOUR_PASSWORD_HERE
+  username: postgres
+  password: 
 
 production:
   adapter: postgresql
   encoding: utf8
-  database: stripstarter
+  database: stripstarter_dev
   pool: 5
-  username: stripstarter
-  password: YOUR_PASSWORD_HERE
+  username: postgres
+  password: 
 
 test:
   adapter: sqlite3
