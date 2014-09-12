@@ -40,6 +40,7 @@ gem 'mail_view', :git => 'https://github.com/basecamp/mail_view.git'
 gem 'configreader'
 gem 'aws-sdk'
 gem 'paperclip'
+gem 'thin'
 
 group :development, :test do
   gem 'factory_girl_rails', require: false

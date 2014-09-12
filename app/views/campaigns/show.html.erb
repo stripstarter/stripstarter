@@ -9,6 +9,14 @@
   <strong>Funding Level:</strong>
   <%= @campaign.amount %>
 </p>
+<p>
+  <% unless current_user %>
+  <h3><%= link_to 'pledge', new_pledger_path(@campaign)  %></h3> 
+  <% else %>
+  <h3><%= link_to 'pledge',"/users/#{current_user.id}/pledges/new"  %></h3>  
+  <% end %>
+
+</p>
 
 <p>
   <strong>Pledgers:</strong>

@@ -1,6 +1,5 @@
 <%= image_tag @user.avatar.url(:thumb) %>
-
-<h1> Attributes </h1>
+<h2> <%= @user.name  %> </h2>
 <table>
   <tr>
     <th>Attribute</th>
@@ -8,12 +7,10 @@
   </tr>
   <% @user.attributes.slice("first_name", "last_name").each do |key, value| %>
     <tr>
-      <td><%= key %></td>
       <td><%= value %></td>
     </tr>
   <% end %>
 </table>
-
 <% if @user.is_a? Pledger %>
   <h1>Pledges</h1>
   <table>

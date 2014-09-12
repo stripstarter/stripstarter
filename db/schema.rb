@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20140904001639) do
     t.string   "current_login_ip"
     t.string   "last_login_ip"
     t.string   "type",                default: "Pledger"
+    t.string   "image"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
