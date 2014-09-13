@@ -24,4 +24,4 @@ cookbook 'runit', '~> 0.16.2'
 cookbook 'yum'
 cookbook 'yum-epel'
 
-cookbook "stripstarter-cookbook",  path: "~/Sites/stripstarter/cookbooks/stripstarter-cookbook"
+cookbook "stripstarter-cookbook",  path: "./cookbooks/stripstarter-cookbook"

@@ -1,3 +1,5 @@
+require 'berkshelf/vagrant'
+
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -119,6 +121,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # validation key to validation.pem.
 
   # config.vm.provision "chef_client" do |chef|
+  #   chef.node_name = "vagrant"
+  #   chef.client_key_path = "~/Sites/chef-repo/.chef/mzemel.pem"
   #   chef.chef_server_url = "https://api.opscode.com/organizations/stripstarter"
   #   chef.validation_key_path = "~/Sites/chef-repo/.chef/stripstarter-validator.pem"
   #   chef.delete_node = true

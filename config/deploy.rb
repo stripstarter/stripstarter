@@ -1,7 +1,8 @@
+require 'capistrano/ext/multistage'
 require "bundler/capistrano"
 require "rvm/capistrano"
 
-set :stages, %w(production staging)
+set :stages, %w(production staging virtual_machine)
 set :default_stage, "production"
 
 set :application, "stripstarter.us"
