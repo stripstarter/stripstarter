@@ -4,6 +4,7 @@ DEPENDENCIES
   build-essential
   chef-sugar
   god
+  homebrew (~> 1.9.0)
   imagemagick
   install_from
   jekyll (~> 0.1.0)
@@ -46,6 +47,7 @@ GRAPH
     yum (>= 0.0.0)
   god (1.0.2)
     runit (<= 0.16.2)
+  homebrew (1.9.0)
   imagemagick (0.2.3)
   install_from (3.0.4)
   iptables (0.14.0)
@@ -83,7 +85,10 @@ GRAPH
   runit (0.16.2)
   stripstarter (0.1.0)
   stripstarter-cookbook (0.1.0)
+    god (~> 1.0.2)
+    homebrew (>= 0.0.0)
     imagemagick (~> 0.2.3)
+    jekyll (~> 0.1.0)
     nginx (>= 0.0.0)
     postgresql (~> 3.4.2)
     rbenv (~> 1.7.1)
