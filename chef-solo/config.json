@@ -1,0 +1,20 @@
+{ 
+  "postgresql": {
+    "password": {
+      "postgres": "050a7eac113a490ae395bf8186c941c6"
+    },
+    "config": {
+      "port": 5432
+    }
+  },
+  "database": {
+    "create": ["encased_dev"]
+  },
+  "build_essential": {
+    "compile_time": true
+  },
+  "run_list": [
+    "recipe[apt]",
+    "recipe[stripstarter-cookbook::default]"
+  ]
+}
