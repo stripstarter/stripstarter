@@ -6,7 +6,7 @@ cat >> ~/.bashrc <<'endmsg'
 alias be="bundle exec"
 alias bet="RAILS_ENV=test bundle exec"
 alias scommit="git commit --author='Stripstarter <stripstarter@gmail.com>' -m"
-alias check="curl http://stripstarter.us"
+alias check="curl http://stripstarter.org"
 
 export PATH="/opt/chefdk/bin:$PATH"
 

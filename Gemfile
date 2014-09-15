@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
 # Use SCSS for stylesheets
@@ -35,8 +34,7 @@ gem 'faker'
 gem 'twitter-bootstrap-rails'
 gem 'less-rails'
 gem 'sidekiq'
-gem 'capistrano-sidekiq' , github: 'seuros/capistrano-sidekiq'
-gem 'mail_view', :git => 'https://github.com/basecamp/mail_view.git'
+gem 'capistrano-sidekiq', git: 'https://github.com/seuros/capistrano-sidekiq.git'
 gem 'configreader'
 gem 'aws-sdk'
 gem 'paperclip'
@@ -45,18 +43,20 @@ group :development, :test do
   gem 'factory_girl_rails', require: false
   gem 'pry'
   gem 'rspec-rails'
-  gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
   gem 'pry-byebug'
+
+  case RUBY_PLATFORM
+  when /darwin/
+    gem 'jazz_hands', git: 'https://github.com/stripstarter/jazz_hands'
+  when /linux/
+    gem 'jazz_hands', path: '/home/vagrant/jazz_hands'
+  end
 end
 
 group :development do
   gem 'spring'
   gem 'better_errors'
   gem 'binding_of_caller'
-  # gem "berkshelf", github: "berkshelf/berkshelf"
-  # gem "vagrant", github: "mitchellh/vagrant", tag: "v1.6.3"
-  # gem 'test-kitchen'
-  # gem 'kitchen-vagrant'
 end
 
 group :test do

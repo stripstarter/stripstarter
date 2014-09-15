@@ -1,4 +1,4 @@
-root = "/var/www/stripstarter.us/current"
+root = "/var/www/stripstarter.org/current"
 working_directory root
 pid "#{root}/tmp/pids/unicorn.pid"
 stderr_path "#{root}/log/unicorn.log"

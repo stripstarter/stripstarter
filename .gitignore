@@ -19,3 +19,6 @@
 
 /config/site_production.yml
 /public/system
+/public/assets
+
+/.vagrant/

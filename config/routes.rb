@@ -10,10 +10,10 @@ Rails.application.routes.draw do
   ########
 
   get "/blog" => redirect( "http://" +
-      (Rails.env.production? ? "blog.stripstarter.us" : "blog.dev") 
+      (Rails.env.production? ? "blog.stripstarter.org" : "blog.dev") 
     ), :as => :blog
   get "/blog/about" => redirect( "http://" +
-      (Rails.env.production? ? "blog.stripstarter.us/about" : "blog.dev/about") 
+      (Rails.env.production? ? "blog.stripstarter.org/about" : "blog.dev/about") 
     ), :as => :about
 
   #############

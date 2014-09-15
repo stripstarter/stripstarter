@@ -12,37 +12,43 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.berkshelf.enabled = true
   config.vm.network "private_network", ip: "10.11.12.13"
 
-  config.vm.synced_folder "~/Sites/stripstarter", "/var/www/stripstarter.org/current"
+  config.vm.synced_folder "~/Sites/stripstarter", "/var/www/stripstarter.org/current", type: "nfs"
 
   config.vm.provider "virtualbox" do |vb|
     vb.customize ["modifyvm", :id, "--memory", "2048"]
   end
 
   # config.vm.box_check_update = false
-  # config.vm.network "forwarded_port", guest: 80, host: 8080
-  # config.ssh.forward_agent = true
-
+  config.vm.network "forwarded_port", guest: 3000, host: 8080
+  # config.ssh.private_key_path = "~/.ssh/id_rsa"
+  config.ssh.forward_agent = true
 
   config.vm.provision "chef_solo" do |chef|
     chef.cookbooks_path = ["cookbooks", "~/.berkshelf/cookbooks"]
     chef.json = { 
       "postgresql" => {
         "password" => {
-          "postgres" => "050a7eac113a490ae395bf8186c941c6"
+          "postgres" => "050a7eac113a490ae395bf8186c941c6" # MD5 hash of the production password; might replace with 'password' hashed
         },
         "config" => {
           "port" => 5432
-        }
+        },
+        "pg_hba" => [
+          {:comment => '# Optional comment', :type => 'local', :db => 'all', :user => 'postgres', :addr => nil, :method => 'trust'}
+        ]
       },
       "database" => {
-        "create" => ["encased_dev"]
+        "create" => ["stripstarter_dev"]
       },
       "build_essential" => {
         "compile_time" => true
+      },
+      "nginx" => {
+        "default_site_enabled" => false
       }
     }
     chef.run_list = [
-        "recipe[stripstarter-cookbook::default]"
+      "recipe[stripstarter-cookbook::default]"
     ]
   end
 end
