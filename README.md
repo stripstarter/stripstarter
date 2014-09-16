@@ -23,7 +23,3 @@ See our [getting started](https://github.com/stripstarter/stripstarter/wiki/Gett
 4.  Write tests for all new features.
 
 5.  [All commits are anonymous](https://github.com/stripstarter/stripstarter/wiki/Command-line-shortcuts)
-
-If you don't want to be publicly associated with this project but still want to contribute, send an email to stripstarter [at] gmail [dot] com with your public key so you can commit as the Stripstarter user.
-
-See [this page](https://github.com/stripstarter/stripstarter/wiki/Command-line-shortcuts) for a simple commit alias.
