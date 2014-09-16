@@ -123,6 +123,8 @@ bash "setup-the-app" do
 cd /var/www/stripstarter.org/current
 export PATH=/home/vagrant/.gem/ruby/2.1.0/bin:$PATH
 export PATH=/opt/rbenv/versions/2.1.2/bin:$PATH
+bundle config disable_local_branch_check true
+bundle config local.jazz_hands ~/jazz_hands
 bundle install
 bundle exec rake db:migrate
 bundle exec rake db:seed

@@ -41,18 +41,11 @@ gem 'paperclip'
 gem 'newrelic_rpm'
 
 group :development, :test do
-  gem 'factory_girl'
-  gem 'factory_girl_rails', require: false
+  gem 'factory_girl_rails', "~> 2.0", require: false
   gem 'pry'
   gem 'rspec-rails'
   gem 'pry-byebug'
-
-  case RUBY_PLATFORM
-  when /darwin/
-    gem 'jazz_hands', git: 'https://github.com/stripstarter/jazz_hands'
-  when /linux/
-    gem 'jazz_hands', path: "~/jazz_hands"
-  end
+  gem 'jazz_hands', git: 'https://github.com/stripstarter/jazz_hands.git'
 end
 
 group :development do
