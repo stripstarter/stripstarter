@@ -38,6 +38,7 @@ gem 'capistrano-sidekiq', git: 'https://github.com/seuros/capistrano-sidekiq.git
 gem 'configreader'
 gem 'aws-sdk'
 gem 'paperclip'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'factory_girl_rails', require: false
