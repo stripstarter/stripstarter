@@ -41,6 +41,7 @@ gem 'paperclip'
 gem 'newrelic_rpm'
 
 group :development, :test do
+  gem 'factory_girl'
   gem 'factory_girl_rails', require: false
   gem 'pry'
   gem 'rspec-rails'

@@ -69,9 +69,7 @@ namespace :deploy do
 
   before "deploy", "deploy:check_revision"
 
-  # Blog is too memory intensive to precompile assets
   before "deploy", "ss:blog:stop" 
-  # after "deploy", "deploy:precompile_assets"
   after "deploy", "ss:blog:start"
 
   after "deploy", "deploy:set_ruby_version"

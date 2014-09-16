@@ -1,5 +1,6 @@
-PATH
-  remote: ~/jazz_hands
+GIT
+  remote: https://github.com/stripstarter/jazz_hands
+  revision: 5e4b48f145883ecb14b55bf04eacc28ac9662676
   specs:
     jazz_hands (0.5.2)
       awesome_print (~> 1.2)
@@ -320,6 +321,7 @@ DEPENDENCIES
   capistrano-sidekiq
   coffee-rails (~> 4.0.0)
   configreader
+  factory_girl
   factory_girl_rails
   faker
   jazz_hands!
