@@ -1,7 +1,5 @@
-GIT
-  remote: git://github.com/nixme/jazz_hands.git
-  revision: 5e4b48f145883ecb14b55bf04eacc28ac9662676
-  branch: bring-your-own-debugger
+PATH
+  remote: ~/jazz_hands
   specs:
     jazz_hands (0.5.2)
       awesome_print (~> 1.2)
@@ -14,21 +12,6 @@ GIT
       pry-remote (>= 0.1.7)
       pry-stack_explorer (~> 0.4.9)
       railties (>= 3.0, < 5.0)
-
-GIT
-  remote: git://github.com/seuros/capistrano-sidekiq.git
-  revision: 807ede255740b57f11b04c0929e6f8a04cf35951
-  specs:
-    capistrano-sidekiq (0.3.6)
-      capistrano
-      sidekiq
-
-GIT
-  remote: https://github.com/basecamp/mail_view.git
-  revision: bc6ab46866a1544cb2c40877142087b0898485eb
-  specs:
-    mail_view (2.0.4)
-      tilt
 
 GEM
   remote: https://rubygems.org/
@@ -88,6 +71,9 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
+    capistrano-sidekiq (0.3.7)
+      capistrano
+      sidekiq
     celluloid (0.15.2)
       timers (~> 1.1.0)
     climate_control (0.0.3)
@@ -107,7 +93,8 @@ GEM
     configreader (0.0.2)
       rails
     connection_pool (2.0.0)
-    coolline (0.4.4)
+    coolline (0.5.0)
+      unicode_utils (~> 1.4)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
     diff-lcs (1.2.5)
@@ -162,6 +149,7 @@ GEM
     net-ssh (2.9.1)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
+    newrelic_rpm (3.9.4.245)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
     paperclip (4.2.0)
@@ -309,6 +297,7 @@ GEM
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unicode_utils (1.4.0)
     unicorn (4.6.2)
       kgio (~> 2.6)
       rack
@@ -328,7 +317,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   capistrano (~> 2.15.0)
-  capistrano-sidekiq!
+  capistrano-sidekiq
   coffee-rails (~> 4.0.0)
   configreader
   factory_girl_rails
@@ -337,7 +326,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   less-rails
-  mail_view!
+  newrelic_rpm
   paperclip
   pg
   pry

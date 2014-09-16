@@ -7,7 +7,7 @@ if Rails.env.development? || Rails.env.production?
   ActionMailer::Base.smtp_settings = {
     address: "smtp.gmail.com",
     port: "587",   # NOTE: upgrade to use 465 for ssl connections
-    domain: "stripstarter.us",
+    domain: "stripstarter.org",
     authentication: :plain,
     user_name: SS_CONFIG.gmail_address,
     password: SS_CONFIG.gmail_password

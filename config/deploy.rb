@@ -5,11 +5,11 @@ require "rvm/capistrano"
 set :stages, %w(production staging virtual_machine)
 set :default_stage, "production"
 
-set :application, "stripstarter.us"
+set :application, "stripstarter.org"
 
 set :user, "deploy"
 set :port, 1138
-set :deploy_to, "/var/www/stripstarter.us"
+set :deploy_to, "/var/www/stripstarter.org"
 # set :deploy_via, :remote_cache
 set :use_sudo, false
 
@@ -17,8 +17,8 @@ set :scm, "git"
 set :repository, "git@github.com:stripstarter/stripstarter.git"
 set :branch, "master"
 
-set :current_path, "/var/www/stripstarter.us/current"
-set :shared_path, "/var/www/stripstarter.us/shared"
+set :current_path, "/var/www/stripstarter.org/current"
+set :shared_path, "/var/www/stripstarter.org/shared"
 
 set :deploy_config_path, `pwd` + "/config/deploy.rb"
 
@@ -31,22 +31,22 @@ namespace :deploy do
   %w[start stop restart].each do |command|
     desc "#{command} unicorn server"
     task command, roles: :app, except: {no_release: true} do
-      run "/etc/init.d/unicorn_stripstarter.us #{command}"
+      run "/etc/init.d/unicorn_stripstarter.org #{command}"
     end
   end
 
   task :setup_config, roles: :app do
-    sudo "ln -nfs #{shared_path}/config/nginx.conf /etc/nginx/sites-enabled/stripstarter.us"
-    sudo "ln -nfs #{shared_path}/config/unicorn_init.sh /etc/init.d/unicorn_stripstarter.us"
-    run "mkdir -p /var/www/stripstarter.us/shared/config"
-    puts "Now edit the config files in /var/www/stripstarter.us/shared."
+    sudo "ln -nfs #{shared_path}/config/nginx.conf /etc/nginx/sites-enabled/stripstarter.org"
+    sudo "ln -nfs #{shared_path}/config/unicorn_init.sh /etc/init.d/unicorn_stripstarter.org"
+    run "mkdir -p /var/www/stripstarter.org/shared/config"
+    puts "Now edit the config files in /var/www/stripstarter.org/shared."
   end
   after "deploy:setup", "deploy:setup_config"
 
   task :symlink_config, roles: :app do
-    run "ln -nfs /var/www/stripstarter.us/shared/config/database.yml #{release_path}/config/database.yml"
-    run "ln -nfs /var/www/stripstarter.us/shared/config/secrets.yml #{release_path}/config/secrets.yml"
-    run "ln -nfs /var/www/stripstarter.us/shared/config/site_production.yml #{release_path}/config/site_production.yml"
+    run "ln -nfs /var/www/stripstarter.org/shared/config/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs /var/www/stripstarter.org/shared/config/secrets.yml #{release_path}/config/secrets.yml"
+    run "ln -nfs /var/www/stripstarter.org/shared/config/site_production.yml #{release_path}/config/site_production.yml"
   end
   after "deploy:finalize_update", "deploy:symlink_config"
 
@@ -64,7 +64,7 @@ namespace :deploy do
     run "rvm use #{ruby_version}"
   end
   task :precompile_assets, roles: :app do
-    run "cd /var/www/stripstarter.us/current && /usr/bin/env rake 'assets:precompile' RAILS_ENV=production"
+    run "cd /var/www/stripstarter.org/current && /usr/bin/env rake 'assets:precompile' RAILS_ENV=production"
   end
 
   before "deploy", "deploy:check_revision"
@@ -99,7 +99,7 @@ namespace :ss do
 
   namespace :soulmate do
     task :reset, roles: :app do
-      run "cd /var/www/stripstarter.us/current && /usr/bin/env rake 'ss:soulmate:reset' RAILS_ENV=production"
+      run "cd /var/www/stripstarter.org/current && /usr/bin/env rake 'ss:soulmate:reset' RAILS_ENV=production"
     end
   end
 end
