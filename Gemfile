@@ -34,7 +34,7 @@ gem 'faker'
 gem 'twitter-bootstrap-rails'
 gem 'less-rails'
 gem 'sidekiq'
-gem 'capistrano-sidekiq', git: 'https://github.com/seuros/capistrano-sidekiq.git'
+gem 'capistrano-sidekiq'
 gem 'configreader'
 gem 'aws-sdk'
 gem 'paperclip'
@@ -50,7 +50,7 @@ group :development, :test do
   when /darwin/
     gem 'jazz_hands', git: 'https://github.com/stripstarter/jazz_hands'
   when /linux/
-    gem 'jazz_hands', path: '/home/vagrant/jazz_hands'
+    gem 'jazz_hands', path: "~/jazz_hands"
   end
 end
 

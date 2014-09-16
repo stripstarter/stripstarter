@@ -1,14 +1,5 @@
-GIT
-  remote: https://github.com/seuros/capistrano-sidekiq.git
-  revision: 862dd7215a885a1fe90b545eb4776c08f652eef9
-  specs:
-    capistrano-sidekiq (0.3.7)
-      capistrano
-      sidekiq
-
-GIT
-  remote: https://github.com/stripstarter/jazz_hands
-  revision: 5e4b48f145883ecb14b55bf04eacc28ac9662676
+PATH
+  remote: ~/jazz_hands
   specs:
     jazz_hands (0.5.2)
       awesome_print (~> 1.2)
@@ -80,6 +71,9 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
+    capistrano-sidekiq (0.3.7)
+      capistrano
+      sidekiq
     celluloid (0.15.2)
       timers (~> 1.1.0)
     climate_control (0.0.3)
@@ -323,7 +317,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   capistrano (~> 2.15.0)
-  capistrano-sidekiq!
+  capistrano-sidekiq
   coffee-rails (~> 4.0.0)
   configreader
   factory_girl_rails
