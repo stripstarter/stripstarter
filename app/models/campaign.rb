@@ -35,27 +35,27 @@ class Campaign < ActiveRecord::Base
   # States #
   ##########
 
-  state_machine :status, :initial => :inactive do
+  state_machine :status, initial: :inactive do
 
-    state :active, value: 'active'
-    state :inactive, value: 'inactive'
-    state :completed, value: 'completed'
-    state :canceled, value: 'canceled'
+    state :active, value: "active"
+    state :inactive, value: "inactive"
+    state :completed, value: "completed"
+    state :canceled, value: "canceled"
 
     event :activate do
-      transition :inactive => :active
+      transition inactive: :active
     end
     event :deactive do
-      transition :active => :inactive
+      transition active: :inactive
     end
     event :complete do
-      transition :active => :completed
+      transition active: :completed
     end
     event :cancel do
       transition [:active, :inactive, :completed] => :canceled
     end
     event :renew do
-      transition :canceled => :active
+      transition canceled: :active
     end
   end
 
@@ -80,7 +80,7 @@ class Campaign < ActiveRecord::Base
   end
 
   def self.search(term)
-    matches = Soulmate::Matcher.new('campaign').matches_for_term(term)
+    matches = Soulmate::Matcher.new("campaign").matches_for_term(term)
     matches.collect do |match|
       {
         "id" => match["id"],
