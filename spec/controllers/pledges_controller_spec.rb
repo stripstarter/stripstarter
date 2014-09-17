@@ -27,9 +27,9 @@ RSpec.describe PledgesController, :type => :controller do
       pledger = FactoryGirl.create(:pledger)
       controller.stub(:current_user).and_return(pledger)
       campaign = FactoryGirl.create(:campaign)
-      post  :create,
-            pledge: {amount: 100, campaign_id: campaign.id},
-            format: :html
+      post :create,
+           pledge: { amount: 100, campaign_id: campaign.id },
+           format: :html
       expect(response).to redirect_to user_path(pledger)
     end
 
@@ -37,9 +37,9 @@ RSpec.describe PledgesController, :type => :controller do
       pledger = FactoryGirl.create(:pledger)
       controller.stub(:current_user).and_return(pledger)
       campaign = FactoryGirl.create(:campaign)
-      post  :create,
-            pledge: {amount: 100, campaign_id: campaign.id},
-            format: :json
+      post :create,
+           pledge: { amount: 100, campaign_id: campaign.id },
+           format: :json
       pledge = JSON.parse(response.body)
       expect(pledge["status"]).to eq("pending")
     end
@@ -48,9 +48,9 @@ RSpec.describe PledgesController, :type => :controller do
       performer = FactoryGirl.create(:performer)
       controller.stub(:current_user).and_return(performer)
       campaign = FactoryGirl.create(:campaign)
-      post  :create,
-            pledge: {amount: 100, campaign_id: campaign.id},
-            format: :html
+      post :create,
+           pledge: { amount: 100, campaign_id: campaign.id },
+           format: :html
       expect(response.status).to eq(500)
     end
   end

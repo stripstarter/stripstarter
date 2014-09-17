@@ -1,7 +1,4 @@
 class Campaign < ActiveRecord::Base
-  include Stripstarter::CampaignStateMachine
-  # States: active, inactive, completed, failed
-
 
   ################
   # Associations #
@@ -28,7 +25,39 @@ class Campaign < ActiveRecord::Base
     includes(:pledges).all.sort_by(&:amount).last(num).reverse
   end
 
-  scope :newest, lambda { order("campaigns.created_at DESC") }
+  scope :newest, ->() { order("campaigns.created_at DESC") }
+  scope :active, ->() { where(status: "active") }
+  scope :inactive, ->() { where(status: "inactive") }
+  scope :completed, ->() { where(status: "completed") }
+  scope :canceled, ->() { where(status: "active") }
+
+  ##########
+  # States #
+  ##########
+
+  state_machine :status, :initial => :inactive do
+
+    state :active, value: 'active'
+    state :inactive, value: 'inactive'
+    state :completed, value: 'completed'
+    state :canceled, value: 'canceled'
+
+    event :activate do
+      transition :inactive => :active
+    end
+    event :deactive do
+      transition :active => :inactive
+    end
+    event :complete do
+      transition :active => :completed
+    end
+    event :cancel do
+      transition [:active, :inactive, :completed] => :canceled
+    end
+    event :renew do
+      transition :canceled => :active
+    end
+  end
 
   #############
   # Searching #
@@ -62,8 +91,6 @@ class Campaign < ActiveRecord::Base
       }
     end
   end
-
-  #############
 
   def amount
     pledges.collect do |pledge|

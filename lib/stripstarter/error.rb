@@ -18,5 +18,17 @@ module Stripstarter
         super(msg)
       end
     end
+
+    class NoUser < Base  
+      def initialize(msg = "Current user required for this action")
+        super(msg)
+      end
+    end
+
+    class NoPledge < Base  
+      def initialize(msg = "No pledge was found to meet the requirements")
+        super(msg)
+      end
+    end
   end
 end

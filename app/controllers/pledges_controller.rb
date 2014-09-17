@@ -16,7 +16,7 @@ class PledgesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { render :action => 'new' }
+        format.html { render action: "new" }
         format.json { render nothing: true, status: 500 }
       end
     end
