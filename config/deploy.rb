@@ -97,7 +97,7 @@ namespace :ss do
 
   namespace :soulmate do
     task :reset, roles: :app do
-      run "cd /var/www/stripstarter.org/current && /usr/bin/env rake 'ss:soulmate:reset' RAILS_ENV=production"
+      run "cd /var/www/stripstarter.org/current && bundle exec rake 'ss:soulmate:reset' RAILS_ENV=production"
     end
   end
 end
