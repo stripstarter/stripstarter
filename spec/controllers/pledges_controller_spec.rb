@@ -23,23 +23,34 @@ RSpec.describe PledgesController, :type => :controller do
   end
 
   context "#create" do
-    it "creates a pledge" do
+    it "creates a pledge via HTML" do
       pledger = FactoryGirl.create(:pledger)
       controller.stub(:current_user).and_return(pledger)
       campaign = FactoryGirl.create(:campaign)
-      post  :create,
-            pledge: {amount: 100, campaign_id: campaign.id},
-            format: :html
+      post :create,
+           pledge: { amount: 100, campaign_id: campaign.id },
+           format: :html
       expect(response).to redirect_to user_path(pledger)
+    end
+
+    it "creates a pledge via JSON" do
+      pledger = FactoryGirl.create(:pledger)
+      controller.stub(:current_user).and_return(pledger)
+      campaign = FactoryGirl.create(:campaign)
+      post :create,
+           pledge: { amount: 100, campaign_id: campaign.id },
+           format: :json
+      pledge = JSON.parse(response.body)
+      expect(pledge["status"]).to eq("pending")
     end
 
     it "fails if current_user is performer" do
       performer = FactoryGirl.create(:performer)
       controller.stub(:current_user).and_return(performer)
       campaign = FactoryGirl.create(:campaign)
-      post  :create,
-            pledge: {amount: 100, campaign_id: campaign.id},
-            format: :html
+      post :create,
+           pledge: { amount: 100, campaign_id: campaign.id },
+           format: :html
       expect(response.status).to eq(500)
     end
   end

@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :pledge do
     amount { 50 }
+    status { "pending" }
   end
 
   factory :pledge_with_pledger,

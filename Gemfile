@@ -40,6 +40,7 @@ gem 'aws-sdk'
 gem 'paperclip'
 gem 'newrelic_rpm'
 gem 'factory_girl_rails', require: false
+gem 'stripe'
 
 group :development, :test do
   gem 'pry'

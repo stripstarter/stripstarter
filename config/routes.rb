@@ -1,9 +1,9 @@
-require 'admin_constraint'
-require 'sidekiq/web'
+require "admin_constraint"
+require "sidekiq/web"
 
 Rails.application.routes.draw do
-  root 'welcome#index'
-  get '/search' => 'welcome#search', as: 'search'
+  root "welcome#index"
+  get "/search" => "welcome#search", as: "search"
 
   ########
   # Blog #
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   # Campaigns #
   #############
 
-  get '/campaigns/search' => 'campaigns#search', as: 'campaign_search'
+  get "/campaigns/search" => "campaigns#search", as: "campaign_search"
   resources :campaigns
 
   ############
@@ -28,15 +28,15 @@ Rails.application.routes.draw do
   ############
 
   resources :user_sessions
-  get '/login' => 'user_sessions#new', as: 'login'
-  get '/logout' => 'user_sessions#destroy', as: 'logout'
+  get "/login" => "user_sessions#new", as: "login"
+  get "/logout" => "user_sessions#destroy", as: "logout"
 
   ##############
   # Performers #
   ##############
 
-  get '/performers/search' => 'performers#search', as: 'performer_search'
-  get '/performers/:performer_id' => 'performers#show'
+  get "/performers/search" => "performers#search", as: "performer_search"
+  get "/performers/:performer_id" => "performers#show"
 
   #########
   # Users #
@@ -50,17 +50,24 @@ Rails.application.routes.draw do
   # Pledges #
   ###########
 
-  get '/users/:user_id/pledges/new' => 'pledges#new'
-  get '/pledgers/:user_id/pledges/new' => 'pledges#new'
-  post '/pledges' => 'pledges#create'
-  get '/users/:user_id/pledges' => 'pledges#index'
+  get "/users/:user_id/pledges/new" => "pledges#new"
+  get "/pledgers/:user_id/pledges/new" => "pledges#new"
+  post "/pledges" => "pledges#create"
+  get "/users/:user_id/pledges" => "pledges#index"
+  get "/checkout" => "checkout#index", as: "checkout"
+  get "/checkout/new_customer" => "checkout#new_customer",
+    as: "new_customer"
+  post "/checkout/create_customer" => "checkout#create_customer",
+    as: "create_customer"
+  post "/checkout/confirm_pledge" => "checkout#confirm_pledge",
+    as: "confirm_pledge"
 
   ######################
   # Sidekiq Monitoring #
   ######################
 
   constraints(AdminConstraint) do
-    mount Sidekiq::Web => '/sidekiq'
+    mount Sidekiq::Web => "/sidekiq"
   end
 
 end

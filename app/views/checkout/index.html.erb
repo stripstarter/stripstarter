@@ -1,0 +1,17 @@
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+
+<strong>My cart</strong>
+<table class="table table-striped">
+  <% @pledges.each do |pledge| %>
+    <tr>
+      <%= form_tag confirm_pledge_path do %>
+        <td><%= "#{pledge.campaign.name}" %></td>
+        <%= hidden_field_tag 'pledge_id', pledge.id %>
+        <td><%= submit_tag "Pledge $#{pledge.amount.to_s.gsub(/\.\d/,"")}!" %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

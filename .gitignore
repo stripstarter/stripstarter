@@ -22,3 +22,5 @@
 /public/assets
 
 .vagrant
+
+/vendor/bundle

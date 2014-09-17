@@ -1,0 +1,14 @@
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<%= form_tag create_customer_path do |f| %>
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key=<%= SS_CONFIG.stripe_test_publishable_key %>
+    data-image="/missing.png"
+    data-name="Register"
+    data-description="Add your card to use Stripstarter"
+    data-amount="0">
+  </script>
+<% end %>
