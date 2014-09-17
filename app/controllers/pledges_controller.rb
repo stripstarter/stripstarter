@@ -8,12 +8,17 @@ class PledgesController < ApplicationController
   end
 
   def create
-    @pledge = Pledge.new(pledges_params)
-    @pledge.pledger_id = current_user.id
+    @pledge = Pledge.new(pledges_params.merge pledger_id: current_user.id)
     if @pledge.save
-      redirect_to user_path(current_user)
+      respond_to do |format|
+        format.html { redirect_to user_path(current_user) }
+        format.json { render json: @pledge.to_json }
+      end
     else
-      render :action => 'new'
+      respond_to do |format|
+        format.html { render :action => 'new' }
+        format.json { render nothing: true, status: 500 }
+      end
     end
   end
 

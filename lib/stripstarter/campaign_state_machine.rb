@@ -6,7 +6,7 @@ module Stripstarter::CampaignStateMachine
         state :active, value: 'active'
         state :inactive, value: 'inactive'
         state :completed, value: 'completed'
-        state :failed, value: 'failed'
+        state :canceled, value: 'canceled'
 
         event :activate do
           transition :inactive => :active
@@ -18,10 +18,10 @@ module Stripstarter::CampaignStateMachine
           transition :active => :completed
         end
         event :cancel do
-          transition [:active, :inactive, :completed] => :failed
+          transition [:active, :inactive, :completed] => :canceled
         end
         event :renew do
-          transition :failed => :active
+          transition :canceled => :active
         end
       end
     end

@@ -54,6 +54,8 @@ Rails.application.routes.draw do
   get '/pledgers/:user_id/pledges/new' => 'pledges#new'
   post '/pledges' => 'pledges#create'
   get '/users/:user_id/pledges' => 'pledges#index'
+  get '/checkout' => 'checkout#index', as: 'checkout'
+  post '/checkout/charge_pledge' => 'checkout#charge_pledge', as: 'charge_pledge'
 
   ######################
   # Sidekiq Monitoring #
