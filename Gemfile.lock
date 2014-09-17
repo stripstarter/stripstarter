@@ -321,7 +321,7 @@ DEPENDENCIES
   capistrano-sidekiq
   coffee-rails (~> 4.0.0)
   configreader
-  factory_girl_rails (~> 2.0)
+  factory_girl_rails
   faker
   jazz_hands!
   jbuilder (~> 2.0)

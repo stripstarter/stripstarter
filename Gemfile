@@ -39,9 +39,9 @@ gem 'configreader'
 gem 'aws-sdk'
 gem 'paperclip'
 gem 'newrelic_rpm'
+gem 'factory_girl_rails', require: false
 
 group :development, :test do
-  gem 'factory_girl_rails', "~> 2.0", require: false
   gem 'pry'
   gem 'rspec-rails'
   gem 'pry-byebug'
