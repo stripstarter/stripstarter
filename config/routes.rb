@@ -55,6 +55,8 @@ Rails.application.routes.draw do
   post "/pledges" => "pledges#create"
   get "/users/:user_id/pledges" => "pledges#index"
   get "/checkout" => "checkout#index", as: "checkout"
+  get "/checkout/new_customer" => "checkout#new_customer", as: "new_customer"
+  post "/checkout/create_customer" => "checkout#create_customer", as: "create_customer"
   post "/checkout/charge_pledge" => "checkout#charge_pledge", as: "charge_pledge"
 
   ######################

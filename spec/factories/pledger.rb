@@ -6,7 +6,7 @@ FactoryGirl.define do
     password { "password" }
     password_confirmation { "password" }
     type { "Pledger" }
-    stripe_customer_id { 1 }
+    stripe_customer_id { "cus_4nRIpQ8DkVr2d5" }
   end
 
   # Pledger with an empty pledge

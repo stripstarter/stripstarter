@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 20140917182213) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.integer  "stripe_customer_id"
+    t.string   "stripe_customer_id"
   end
 
 end
