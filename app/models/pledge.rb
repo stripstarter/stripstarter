@@ -32,18 +32,16 @@ class Pledge < ActiveRecord::Base
   scope :declined, ->() { where(status: "declined") }
 
   def charge!
-    begin
-      Stripe::Charge.create(
-        customer:    pledger.stripe_customer_id,
-        amount:      amount.to_i * 100,
-        description: "#{amount.to_i * 100} for #{campaign.name}",
-        currency:    "usd"
-      )
-      complete!
-      true
-    rescue Stripe::CardError
-      decline!
-      false
-    end
+    Stripe::Charge.create(
+      customer:    pledger.stripe_customer_id,
+      amount:      amount.to_i * 100,
+      description: "#{amount.to_i * 100} for #{campaign.name}",
+      currency:    "usd"
+    )
+    complete!
+    true
+  rescue Stripe::CardError
+    decline!
+    false
   end
 end
