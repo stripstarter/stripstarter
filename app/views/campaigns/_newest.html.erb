@@ -3,11 +3,7 @@
 <br />
 <br />
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-  </tr>
+<table class="table table-striped">
   <% @newest_campaigns.each do |campaign| %>
     <tr>
       <td><%= link_to "#{campaign.name}", campaign_path(campaign) %></td>

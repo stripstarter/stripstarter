@@ -11,7 +11,7 @@ class Performer < User
   # Searching #
   #############
 
-  after_save :load_into_soulmate, unless: ->(){ Rails.env.test? }
+  after_save :load_into_soulmate, unless: ->() { Rails.env.test? }
   before_destroy :remove_from_soulmate
 
   def remove_from_soulmate

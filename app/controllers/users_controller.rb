@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :redirect_if_pledger, only: :show
 
   def index
     _rand = rand(Performer.count - 5)
@@ -58,5 +59,12 @@ class UsersController < ApplicationController
       :password_confirmation,
       :type
     )
+  end
+
+  def redirect_if_pledger
+    @user = User.find(params[:id])
+    if !current_user && @user.is_a?(Pledger)
+      redirect_to performers_path
+    end
   end
 end

@@ -17,6 +17,14 @@ class Campaign < ActiveRecord::Base
     pledgers + performers
   end
 
+  def owner
+    User.find_by(id: owner_id)
+  end
+
+  def owner=(user)
+    self.update_column(:owner_id, user.id)
+  end
+
   ##########
   # Scopes #
   ##########

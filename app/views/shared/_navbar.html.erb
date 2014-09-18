@@ -27,8 +27,8 @@
           <% unless current_user.stripe_customer_id %>
             <li><%= link_to "Add Your Card", new_customer_path %></li>
           <% end %>
-          <li><%= link_to "My Cart", checkout_path %></li>
-          <li><%= link_to "Edit Profile", edit_user_path(:current) %></li>
+          <li><%= link_to "My Cart" + pending_pledges, checkout_path %></li>
+          <li><%= link_to "Profile", user_path(current_user) %></li>
           <li><%= link_to "Logout", logout_path %></li>
         <% else %>
           <li><%= link_to "Register", new_user_path %></li>
