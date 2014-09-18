@@ -2,33 +2,46 @@
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
 
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @campaign.name %>
-</p>
-
-<p>
-  <strong>Funding Level:</strong>
-  <%= @campaign.amount %>
-</p>
-
-<p>
-  <strong>Pledgers:</strong>
-  <table>
-    <% @campaign.pledges.each do |pledge| %>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table">
       <tr>
-        <td><%= pledge.pledger.first_name %></td>
-        <td><%= pledge.amount %></td>
+        <td class="col-md-2"><strong>Starring: </strong></td>
+        <td class="col-md-10">
+          <% if !@campaign.performers.blank? %>
+            <%= link_to performer_path(@campaign.performers.first), class: "col-md-2" do %>
+              <div class="row">
+                <%= image_tag @campaign.performers.first.avatar.url(:thumb), class: "img-circle" %>
+              </div>
+            <% end %>
+          <% end %>
+        </td>
+      </tr> 
+      <tr>
+        <td class="col-md-2"><strong>Name: </strong></td>
+        <td class="col-md-10"><%= @campaign.name %></td>
       </tr>
-    <% end %>
-  </table>
-</p>
+      <tr>
+        <td class="col-md-2"><strong>Funding: </strong></td>
+        <td class="col-md-10"><%= "$" + @campaign.amount.to_s %></td>
+      </tr>
+      <tr>
+        <td class="col-md-2"><strong>Pledgers: </strong></td>
+        <td class="col-md-10">
+          <% @campaign.pledgers.limit(5).each do |pledger| %>
+            <div class="col-md-2">
+              <%= image_tag pledger.avatar.url(:thumb), class: "img-circle" %>
+            </div>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
 
-<%= link_to "Back", campaigns_path %>
+
 <%= form_tag pledges_path, method: "post" do |f| %>
   <%= hidden_field_tag 'pledge[campaign_id]', @campaign.id %>
   <%= hidden_field_tag 'pledge[amount]', "50" %>
-  <%= submit_tag "Pledge $50!", :class => "btn btn-default" %>
+  <%= submit_tag "Pledge $50!", :class => "btn btn-success" %>
 <% end %>

@@ -1,4 +1,34 @@
-<%= text_field_tag 'performer_search', nil, placeholder: "Find a performer..." %>
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<div class="row">
+  <div class="col-md-6">
+    <form role="form" class="form-horizontal">
+      <div class="form-group">
+        <input type="text" class="performer_search form-control" id="performer_search" placeholder="Search by performer...">
+      </div>
+    </form>
+  </div>
+</div>
+
+<br />
+<br />
+
+<div class="row">
+  <div class="col-md-10">
+    <% @performers.each do |performer| %>
+      <%= link_to performer_path(performer), class: "col-md-2" do %>
+        <div class="row">
+          <%= image_tag performer.avatar.url(:thumb), class: "img-circle" %>
+        </div>
+        <div class="row">
+          <p><%= performer.name %></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
 
 <script type="text/javascript">
   $(function() {
@@ -28,11 +58,3 @@
     };
   });
 </script>
-
-<h3>Some performers</h3>
-
-<table class="table table-striped">
-  <% @performers.each do |performer| %>
-    <tr><td><%= link_to "#{performer.name}", performer_path(performer) %></td></tr>
-  <% end %>
-</table>

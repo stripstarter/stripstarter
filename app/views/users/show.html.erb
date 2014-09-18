@@ -3,30 +3,51 @@
 <% end %>
 
 <div>
-  <%= image_tag @user.avatar.url(:thumb) %>
+  <%= image_tag @user.avatar.url(:thumb), class: "img-circle" %>
 </div>
 
-<h1><div>Basic Info</div></h1>
-<%= link_to "Edit", edit_user_path(@user), class: "btn btn-default" %>
-<table class="table table-striped">
-  <tr><td>Name:</td><td><%= @user.name %></td></tr>
-  <tr><td>Email:</td><td><%= @user.email %></td></tr>
-</table>
+<div class="row">
+  <div class="col-md-6">
+    <div class="row">
+      <h3>
+        <div class="col-md-8">Basic Info</div>
+        <div class="col-md-4">
+          <% if @user.id == current_user.try(:id) %>
+            <small><%= link_to "Edit", edit_user_path(@user), class: "text-right" %></small>
+          <% end %>
+        </div>
+      </h3>
+    </div>
 
-<% if @user.is_a? Pledger %>
-  <h1>Pledges</h1>
-  <table class="table table-striped">
-    <tr>
-      <th>Campaign</th>
-      <th>Value</th>
-      <th>Delete?</th>
-    </tr>
-    <% @user.pledges.each do |pledge| %>
-      <tr>
-        <td><%= pledge.campaign.try(:name) %></td>
-        <td><%= pledge.amount %></td>
-        <td><%= link_to "X", "/pledges/#{pledge.id}", method: :delete, :class => "btn btn-default" %></td>
-      </tr>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-striped">
+          <tr><td>Name:</td><td><%= @user.name %></td></tr>
+          <tr><td>Email:</td><td><%= @user.email %></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <% if @user.is_a? Pledger %>
+      <div class="row">
+        <div class="col-md-12">
+          <h3>Pledges</h3>
+          <table class="table table-striped">
+            <tr>
+              <th>Campaign</th>
+              <th>Value</th>
+              <th>Delete?</th>
+            </tr>
+            <% @user.pledges.each do |pledge| %>
+              <tr>
+                <td><%= pledge.campaign.try(:name) %></td>
+                <td><%= pledge.amount %></td>
+                <td><%= link_to "X", "/pledges/#{pledge.id}", method: :delete, :class => "btn btn-default" %></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
     <% end %>
-  </table>
-<% end %>
+  </div>
+</div>

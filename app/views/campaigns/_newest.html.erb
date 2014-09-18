@@ -1,13 +1,17 @@
-<h3>Newest Campaigns</h3>
+<div class="row">
+  <div class="col-md-8">
+    <h3 class="text-center">Newest Campaigns</h3>
 
-<br />
-<br />
+    <br />
+    <br />
 
-<table class="table table-striped">
-  <% @newest_campaigns.each do |campaign| %>
-    <tr>
-      <td><%= link_to "#{campaign.name}", campaign_path(campaign) %></td>
-      <td><%= campaign.created_at.strftime("%B %d, %Y") %></td>
-    </tr>
-  <% end %>
-</table>
+    <table class="table table-striped">
+      <% @newest_campaigns.each do |campaign| %>
+        <tr>
+          <td><%= link_to "#{campaign.name}", campaign_path(campaign) %></td>
+          <td><%= campaign.created_at.strftime("%B %d, %Y") %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

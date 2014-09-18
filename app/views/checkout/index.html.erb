@@ -9,10 +9,10 @@
   <table class="table table-striped">
     <% @pledges.each do |pledge| %>
       <tr>
-        <%= form_tag confirm_pledge_path do %>
+        <%= form_tag confirm_pledge_path, class: "form-inline" do %>
           <td><%= "#{pledge.campaign.try(:name)}" %></td>
           <%= hidden_field_tag 'pledge_id', pledge.id %>
-          <td><%= submit_tag "Pledge $#{pledge.amount.to_s.gsub(/\.\d/,"")}!" %></td>
+          <td><%= submit_tag "Confirm $#{pledge.amount.to_s.gsub(/\.\d/,"")}" %></td>
           <td><%= link_to "X", "/pledges/#{pledge.id}", method: :delete, :class => "btn btn-default" %></td>
         <% end %>
       </tr>
