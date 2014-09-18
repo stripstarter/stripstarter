@@ -1,11 +1,6 @@
 class PledgesController < ApplicationController
-
   before_filter :ensure_pledger_or_admin
-
-  def new
-    @pledge = Pledge.new
-    @campaigns = Campaign.all
-  end
+  before_filter :ensure_owner, only: :destroy
 
   def create
     @pledge = Pledge.new(pledges_params.merge pledger_id: current_user.id)
@@ -35,6 +30,26 @@ class PledgesController < ApplicationController
     end
   end
 
+  def destroy
+    @pledge ||= Pledge.find(params[:id])
+    respond_to do |format|
+      if @pledge.destroy
+        format.json { render nothing: true, status: 200 }
+        format.html do
+          flash[:notice] = "Pledge deleted!"
+          redirect_to checkout_path
+        end
+      else
+        format.json { render nothing:true, status: 500 }
+        format.html do
+          flash[:notice] = "Pledge could not be deleted: \
+            #{@pledge.errors.join}"
+          redirect_to checkout_path
+        end
+      end
+    end
+  end
+
   private
 
   def pledges_params
@@ -46,6 +61,14 @@ class PledgesController < ApplicationController
       raise Stripstarter::Error::Unauthorized
     else
       true
+    end
+  end
+
+  def ensure_owner
+    @pledge = Pledge.find(params[:id])
+    if current_user != @pledge.pledger
+      flash[:notice] = "You are not authorized to perform that action"
+      redirect_to root_path
     end
   end
 end

@@ -50,8 +50,6 @@ Rails.application.routes.draw do
   # Pledges #
   ###########
 
-  get "/users/:user_id/pledges/new" => "pledges#new"
-  get "/pledgers/:user_id/pledges/new" => "pledges#new"
   post "/pledges" => "pledges#create"
   get "/users/:user_id/pledges" => "pledges#index"
   get "/checkout" => "checkout#index", as: "checkout"
@@ -61,6 +59,7 @@ Rails.application.routes.draw do
        as: "create_customer"
   post "/checkout/confirm_pledge" => "checkout#confirm_pledge",
        as: "confirm_pledge"
+  delete "/pledges/:id" => "pledges#destroy"
 
   ######################
   # Sidekiq Monitoring #

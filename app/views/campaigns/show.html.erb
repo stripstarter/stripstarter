@@ -1,3 +1,7 @@
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -22,5 +26,9 @@
   </table>
 </p>
 
-<%= link_to 'Edit', edit_campaign_path(@campaign) %> |
-<%= link_to 'Back', campaigns_path %>
+<%= link_to "Back", campaigns_path %>
+<%= form_tag pledges_path, method: "post" do |f| %>
+  <%= hidden_field_tag 'pledge[campaign_id]', @campaign.id %>
+  <%= hidden_field_tag 'pledge[amount]', "50" %>
+  <%= submit_tag "Pledge $50!", :class => "btn btn-default" %>
+<% end %>

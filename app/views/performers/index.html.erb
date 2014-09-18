@@ -31,7 +31,8 @@
 
 <h3>Some performers</h3>
 
-<% @performers.each do |performer| %>
-  <%= link_to "#{performer.name}", performer_path(performer) %>
-  <br />
-<% end %>
+<table class="table table-striped">
+  <% @performers.each do |performer| %>
+    <tr><td><%= link_to "#{performer.name}", performer_path(performer) %></td></tr>
+  <% end %>
+</table>

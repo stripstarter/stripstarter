@@ -1,30 +1,31 @@
-<%= image_tag @user.avatar.url(:thumb) %>
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
 
-<h1> Attributes </h1>
-<table>
-  <tr>
-    <th>Attribute</th>
-    <th>Value</th>
-  </tr>
-  <% @user.attributes.slice("first_name", "last_name").each do |key, value| %>
-    <tr>
-      <td><%= key %></td>
-      <td><%= value %></td>
-    </tr>
-  <% end %>
+<div>
+  <%= image_tag @user.avatar.url(:thumb) %>
+</div>
+
+<h1><div>Basic Info</div></h1>
+<%= link_to "Edit", edit_user_path(@user), class: "btn btn-default" %>
+<table class="table table-striped">
+  <tr><td>Name:</td><td><%= @user.name %></td></tr>
+  <tr><td>Email:</td><td><%= @user.email %></td></tr>
 </table>
 
 <% if @user.is_a? Pledger %>
   <h1>Pledges</h1>
-  <table>
+  <table class="table table-striped">
     <tr>
       <th>Campaign</th>
       <th>Value</th>
+      <th>Delete?</th>
     </tr>
     <% @user.pledges.each do |pledge| %>
       <tr>
-        <td><%= pledge.campaign.name %></td>
+        <td><%= pledge.campaign.try(:name) %></td>
         <td><%= pledge.amount %></td>
+        <td><%= link_to "X", "/pledges/#{pledge.id}", method: :delete, :class => "btn btn-default" %></td>
       </tr>
     <% end %>
   </table>
