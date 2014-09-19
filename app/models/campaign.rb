@@ -13,17 +13,13 @@ class Campaign < ActiveRecord::Base
   has_many :pledges
   has_many :pledgers, through: :pledges
 
+  belongs_to :owner, class: User
+
   def users
     pledgers + performers
-  end
+  end 
 
-  def owner
-    User.find_by(id: owner_id)
-  end
-
-  def owner=(user)
-    self.update_column(:owner_id, user.id)
-  end
+  validates_presence_of :owner
 
   ##########
   # Scopes #
@@ -35,18 +31,16 @@ class Campaign < ActiveRecord::Base
 
   scope :newest, ->() { order("campaigns.created_at DESC") }
   scope :active, ->() { where(status: "active") }
-  scope :inactive, ->() { where(status: "inactive") }
   scope :completed, ->() { where(status: "completed") }
-  scope :canceled, ->() { where(status: "active") }
+  scope :canceled, ->() { where(status: "canceled") }
 
   ##########
   # States #
   ##########
 
-  state_machine :status, initial: :inactive do
+  state_machine :status, initial: :active do
 
     state :active, value: "active"
-    state :inactive, value: "inactive"
     state :in_review, value: "in_review"
     state :completed, value: "completed"
     state :canceled, value: "canceled"
@@ -60,14 +54,14 @@ class Campaign < ActiveRecord::Base
     event :approve do
       transition review: :completed
     end
-    event :deactive do
-      transition active: :inactive
+    event :deny do
+      transition review: :active
     end
     event :complete do
       transition active: :completed
     end
     event :cancel do
-      transition any: :canceled
+      transition [:active, :in_review, :completed] => :canceled
     end
     event :renew do
       transition canceled: :active

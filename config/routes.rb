@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   get "/campaigns/search" => "campaigns#search", as: "campaign_search"
   resources :campaigns
+  get "/campaigns/:id/finish" => "campaigns#finish",
+      as: "campaign_finish"
 
   ############
   # Sessions #

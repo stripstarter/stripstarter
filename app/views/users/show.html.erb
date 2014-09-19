@@ -18,7 +18,7 @@
         </div>
       </h3>
     </div>
-
+    <br />
     <div class="row">
       <div class="col-md-12">
         <table class="table table-striped">
@@ -47,6 +47,41 @@
             <% end %>
           </table>
         </div>
+      </div>
+    <% end %>
+
+    <% if @user.is_a?(Performer) && !@user.campaigns.blank? %>
+      <div class="row">
+        <h3>
+          <div class="col-md-8">Campaigns</div>
+          <div class="col-md-4"></div>
+        </h3>
+      </div>
+      <br />
+      <div class="row">
+      <div class="col-md-12">
+        <table class="table table-striped">
+          <% @user.campaigns.each do |campaign| %>
+            <tr>
+              <td class="col-md-8"><%= campaign.name %></td>
+              <td class="col-md-2"><%= campaign.amount %></td>
+              <td class="col-md-1">
+                <% if true #@user.id == current_user.try(:id) %>
+                  <%= link_to campaign_path(campaign), method: "delete" do %>
+                    <button class="btn btn-danger">X</button>
+                  <% end %>
+                <% end %>
+              </td>
+              <td class="col-md-1">
+                <% if true #@user.id == current_user.try(:id) %>
+                  <%= link_to campaign_finish_path(id: campaign.id) do %>
+                    <button class="btn btn-success">></button>
+                  <% end %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
       </div>
     <% end %>
   </div>

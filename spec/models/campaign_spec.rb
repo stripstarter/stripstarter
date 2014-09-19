@@ -8,17 +8,17 @@ RSpec.describe Campaign, :type => :model do
       @campaign = FactoryGirl.create(:campaign)
     end
 
-    it "has an initial state of 'inactive'" do
-      expect(@campaign.status).to eq('inactive')
+    it "has an initial state of 'active'" do
+      expect(@campaign.status).to eq('active')
     end
 
     it "responds to #inactive?" do
-      expect(@campaign.inactive?).to be_truthy
+      expect(@campaign.active?).to be_truthy
     end
 
-    it "transitions to active" do
-      @campaign.activate
-      expect(@campaign.active?).to be_truthy
+    it "transitions to canceled" do
+      @campaign.cancel
+      expect(@campaign.canceled?).to be_truthy
     end
   end
 

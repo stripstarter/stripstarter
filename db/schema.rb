@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140918014301) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20140919021240) do
 
   create_table "campaign_feature_joins", force: true do |t|
     t.integer  "campaign_id"
@@ -27,7 +24,7 @@ ActiveRecord::Schema.define(version: 20140918014301) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "name"
-    t.string   "status",     default: "inactive"
+    t.string   "status",     default: "active"
     t.integer  "owner_id"
   end
 
