@@ -10,6 +10,8 @@ describe CampaignsController do
     end
 
     it "responds with campaigns" do
+      expect(campaign.active?).to be_truthy
+      # Warning: subject is lazy
       get :index, format: :json
       body = JSON.parse(response.body)["campaigns"]
       expect(body.size).to be > 0

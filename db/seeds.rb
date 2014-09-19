@@ -15,9 +15,4 @@ puts "Creating 100 campaigns with pledgers and performers"
 	FactoryGirl.create(:campaign_with_pledge_and_performance, status: "active")
 end
 
-puts "Creating 100 performers"
-100.times do
-  FactoryGirl.create(:performer)
-end
-
 FactoryGirl.create(:admin)
