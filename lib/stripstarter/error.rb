@@ -30,5 +30,11 @@ module Stripstarter
         super(msg)
       end
     end
+
+    class NoPerformance < Base
+      def initialize(msg = "No performance was found to attach this photo to.")
+        super(msg)
+      end
+    end
   end
 end

@@ -1,13 +1,15 @@
 class CampaignsController < ApplicationController
 
-  before_filter :ensure_campaign_owner, only: [:edit, :update, :destroy]
+  before_filter :ensure_owner, only: [:edit, :update]
+  before_filter :ensure_performer, only: [:finish, :submit]
+  before_filter :ensure_owner_or_performer, only: :destroy
 
   # GET /campaigns
   # GET /campaigns.json
   def index
-    @campaigns = Campaign.all
-    @top_campaigns = Campaign.top(5)
-    @newest_campaigns = Campaign.newest.first(5)
+    @campaigns = Campaign.active
+    @top_campaigns = Campaign.active.top(5)
+    @newest_campaigns = Campaign.active.newest.first(5)
     respond_to do |format|
       format.json { render :json => @campaigns }
       format.html
@@ -19,8 +21,16 @@ class CampaignsController < ApplicationController
   def show
     @campaign = Campaign.find(params[:id])
     respond_to do |format|
-      format.json { render :json => @campaign }
-      format.html
+      if @campaign.try(:active?) || current_admin?
+        format.json { render json: @campaign }
+        format.html
+      else
+        format.json { render nothing: true, status: 500 }
+        format.html do
+          flash[:notice] = "That campaign doesn't exist!"
+          redirect_to campaigns_path
+        end
+      end
     end
   end
 
@@ -38,6 +48,7 @@ class CampaignsController < ApplicationController
   # POST /campaigns.json
   def create
     @campaign = Campaign.new(campaign_params)
+    @campaign.owner = current_user
 
     respond_to do |format|
       if @campaign.save
@@ -69,15 +80,49 @@ class CampaignsController < ApplicationController
   # DELETE /campaigns/1.json
   def destroy
     @campaign ||= Campaign.find(params[:id])
-    @campaign.destroy
     respond_to do |format|
-      format.html { redirect_to campaigns_url, notice: "Campaign was successfully destroyed." }
-      format.json { head :no_content }
+      if @campaign.cancel
+        format.html do
+          flash[:notice] = Stripstarter::Response::CAMPAIGN_DESTROY_SUCCESS
+          redirect_to campaigns_path
+        end
+        format.json { render nothing: true, status: 200 }
+      else
+        format.html do
+          flash[:notice] = Stripstarter::Response::CAMPAIGN_DESTROY_FAILURE
+          redirect_to campaigns_path
+        end
+        format.json { render nothing: true, status: 500 }
+      end
     end
   end
 
   def search
     render json: Campaign.search(params["term"]), root: false
+  end
+
+  def finish
+    @campaign ||= Campaign.find(params[:id])
+  end
+
+  def submit
+    @campaign ||= Campaign.find(params[:id])
+    respond_to do |format|
+      if @campaign.try(:submit_for_review)
+        format.json { render nothing: true, status: 200 }
+        format.html do
+          flash[:notice] = "Campaign has been submitted for review by administrator. \
+            In the meantime, why don't you check out some other campaigns?"
+          redirect_to campaigns_path
+        end
+      else
+        format.json { render nothing: true, status: 500 }
+        format.html do
+          flash[:notice] = "Uh oh.  Something went wrong!"
+          redirect_to root_path
+        end
+      end
+    end
   end
 
   private
@@ -86,10 +131,30 @@ class CampaignsController < ApplicationController
     params.require(:campaign).permit(:name)
   end
 
-  def ensure_campaign_owner
+  def ensure_owner
     @campaign = Campaign.find(params[:id])
-    if @campaign.owner_id != current_user.try(:id)
-      flash[:notice] = "You are not permitted to perform this action"
+    unless current_admin? || @campaign.owner == current_user
+      flash[:notice] = Stripstarter::Response::UNAUTHORIZED_ACTION
+      redirect_to campaigns_path
+    end
+    true
+  end
+
+  def ensure_performer
+    @campaign = Campaign.find(params[:id])
+    unless current_admin? || @campaign.performers.include?(current_user)
+      flash[:notice] = Stripstarter::Response::UNAUTHORIZED_ACTION
+      redirect_to campaigns_path
+    end
+    true
+  end
+
+  def ensure_owner_or_performer
+    @campaign = Campaign.find(params[:id])
+    unless current_admin? ||
+           @campaign.owner == current_user ||
+           @campaign.performers.include?(current_user)
+      flash[:notice] = Stripstarter::Response::UNAUTHORIZED_ACTION
       redirect_to campaigns_path
     end
     true

@@ -13,17 +13,15 @@ class Campaign < ActiveRecord::Base
   has_many :pledges
   has_many :pledgers, through: :pledges
 
+  belongs_to :owner, class: User
+
+  has_many :photos, through: :performances
+
   def users
     pledgers + performers
-  end
+  end 
 
-  def owner
-    User.find_by(id: owner_id)
-  end
-
-  def owner=(user)
-    self.update_column(:owner_id, user.id)
-  end
+  validates_presence_of :owner
 
   ##########
   # Scopes #
@@ -35,18 +33,17 @@ class Campaign < ActiveRecord::Base
 
   scope :newest, ->() { order("campaigns.created_at DESC") }
   scope :active, ->() { where(status: "active") }
-  scope :inactive, ->() { where(status: "inactive") }
   scope :completed, ->() { where(status: "completed") }
-  scope :canceled, ->() { where(status: "active") }
+  scope :canceled, ->() { where(status: "canceled") }
+  scope :in_review, ->() { where(status: "in_review") }
 
   ##########
   # States #
   ##########
 
-  state_machine :status, initial: :inactive do
+  state_machine :status, initial: :active do
 
     state :active, value: "active"
-    state :inactive, value: "inactive"
     state :in_review, value: "in_review"
     state :completed, value: "completed"
     state :canceled, value: "canceled"
@@ -54,20 +51,22 @@ class Campaign < ActiveRecord::Base
     event :activate do
       transition inactive: :active
     end
-    event :review do
-      transition active: :review
+    event :submit_for_review do
+      transition active: :in_review
     end
     event :approve do
-      transition review: :completed
+      transition in_review: :completed
+      # TODO: pledges.find_each(&:charge!)
+      # TODO: send out a mailer?
     end
-    event :deactive do
-      transition active: :inactive
+    event :deny do
+      transition in_review: :active
     end
     event :complete do
       transition active: :completed
     end
     event :cancel do
-      transition any: :canceled
+      transition [:active, :in_review, :completed] => :canceled
     end
     event :renew do
       transition canceled: :active

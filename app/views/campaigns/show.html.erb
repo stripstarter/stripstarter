@@ -2,6 +2,10 @@
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
 
+<% if current_admin? %>
+  <%= "STATUS: #{@campaign.status}" %>
+<% end %>
+
 <div class="row">
   <div class="col-md-12">
     <table class="table">
@@ -39,9 +43,23 @@
   </div>
 </div>
 
-
-<%= form_tag pledges_path, method: "post" do |f| %>
-  <%= hidden_field_tag 'pledge[campaign_id]', @campaign.id %>
-  <%= hidden_field_tag 'pledge[amount]', "50" %>
-  <%= submit_tag "Pledge $50!", :class => "btn btn-success" %>
-<% end %>
+<div class="row">
+  <div class="col-md-4">
+    <div class="col-md-6">
+      <% if !current_user.try(:is_a?, Performer) %>
+        <%= form_tag pledges_path, method: "post" do |f| %>
+          <%= hidden_field_tag 'pledge[campaign_id]', @campaign.id %>
+          <%= hidden_field_tag 'pledge[amount]', "50" %>
+          <%= submit_tag "Pledge $50!", :class => "btn btn-success" %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-md-6">
+      <% if @campaign.performers.include?(current_user) || current_admin? %>
+        <%= link_to campaign_finish_path(@campaign) do %>
+          <button class="btn btn-success"><%= "Collect $#{@campaign.amount}!" %></button>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

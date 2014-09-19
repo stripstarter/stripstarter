@@ -4,43 +4,50 @@ RSpec.describe Campaign, :type => :model do
 
   context "state machine" do
 
-    before(:each) do
-      @campaign = FactoryGirl.create(:campaign)
+    subject(:campaign) do
+      FactoryGirl.create(:campaign)
     end
 
-    it "has an initial state of 'inactive'" do
-      expect(@campaign.status).to eq('inactive')
+    it "has an initial state of 'active'" do
+      expect(campaign.status).to eq('active')
     end
 
     it "responds to #inactive?" do
-      expect(@campaign.inactive?).to be_truthy
+      expect(campaign.active?).to be_truthy
     end
 
-    it "transitions to active" do
-      @campaign.activate
-      expect(@campaign.active?).to be_truthy
+    it "transitions to canceled" do
+      campaign.cancel
+      expect(campaign.canceled?).to be_truthy
     end
   end
 
   context "associations" do
 
-    before(:each) do
-      @campaign = FactoryGirl.create(:campaign_with_pledge_and_performance)
+    subject(:campaign) do
+      FactoryGirl.create(:campaign_with_pledge_and_performance)
     end
 
     it "has performers" do
-      expect(@campaign.performers.first).to be_a Performer
+      expect(campaign.performers.first).to be_a Performer
     end
 
     it "has pledgers" do
-      expect(@campaign.pledgers.first).to be_a Pledger
+      expect(campaign.pledgers.first).to be_a Pledger
     end
 
     it "has both" do
-      types = @campaign.users.map(&:class)
+      types = campaign.users.map(&:class)
       expect(types).to include Performer
       expect(types).to include Pledger
     end
+
+    it "has photos" do
+      performance = FactoryGirl.create(:photo).performance
+      campaign.performances << performance
+      expect(campaign.photos).to_not be_empty
+    end
+
   end
 
   context "scopes" do

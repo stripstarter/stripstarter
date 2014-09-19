@@ -1,0 +1,62 @@
+<!-- <p>THIS PAGE WILL LIST THE FEATURES AND AMOUNT FOR A PARTICULAR CAMPAIGN REFERENCED BY @campaign</p>
+
+<p>IT IS ONLY ACCESSIBLE IF THE CURRENT USER IS A PERFORMER (OR ADMIN) WHO OWNS THE CAMPAIGN SPECIFIED.</p>
+
+<p>THE FEATURES WILL ALL HAVE A LENGTHY DESCRIPTION OF WHAT EXACTLY IS REQUESTED (THE SAME DESCRIPTION THE PERSON MAKING THE CAMPAIGN WOULD SEE)</p>
+
+<p>THERE WILL BE AN UPLOAD FORM WHICH POSTS TO PerformancePhotos#create WHICH SAVES THE ATTACHMENT VIA PAPERCLIP TO A PRIVATE FOLDER IN THE BUCKET.  THIS FORM IS INLINE AND THE POST REQUEST IS ASYNCHRONOUS.</p>
+
+<p>ONCE THE PERFORMER HAS UPLOADED ENOUGH PHOTOS THEY FEEL IS SUFFICIENT, THEY CLICK 'Continue' WHICH MAKES A POST REQUEST TO Campaigns#submit_for_review.</p>
+
+<p>FROM THERE, THE CAMPAIGN WILL BE MARKED AS "in_review" AND THERE WILL BE AN ADMIN INTERFACE TO REVIEW CAMPAIGNS AND MARK THEM AS "completed" OR BACK TO "active"</p> -->
+
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<h3>Submitting photos for <%= @campaign.name.truncate(20) %></h3>
+<div class="row">
+  <div class="col-md-6">
+    <table class="table">
+      <tr>
+        <th class="col-md-8"></th>
+        <th class="col-md-4"></th>
+      </tr>
+      <% @campaign.photos.each do |photo| %>
+        <tr>
+          <td><%= image_tag photo_path(photo, style: "thumb") %></td>
+          <td>
+            <%= link_to photo_destroy_path(photo_id: photo.id), method: "delete" do %>
+              <button class="btn btn-danger">X</button>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <%= form_for (Photo.new), url: photos_path, html: {class: "form-horizontal form-inline col-md-6", role: "form"} do |f| %>
+    <%= hidden_field_tag 'campaign_id', @campaign.id %>
+    <div class="form-group">
+      <div class="col-md-12">
+        <%= f.label :image %>
+        <%= f.file_field :image, name: "photo[image]" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-12 actions">
+        <input type="submit" value="Add Photo" class="btn btn-success">
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="row">
+  <div class="col-md-1">
+    <%= link_to campaign_submit_path(@campaign), method: "post" do %>
+      <button class="btn btn-success">Submit for review!</button>
+    <% end %>
+  </div>
+</div>
