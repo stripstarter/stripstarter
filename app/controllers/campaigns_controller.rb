@@ -1,7 +1,7 @@
 class CampaignsController < ApplicationController
 
   before_filter :ensure_owner, only: [:edit, :update]
-  before_filter :ensure_performer, only: :finish
+  before_filter :ensure_performer, only: [:finish, :submit]
   before_filter :ensure_owner_or_performer, only: :destroy
 
   # GET /campaigns
@@ -21,7 +21,7 @@ class CampaignsController < ApplicationController
   def show
     @campaign = Campaign.find(params[:id])
     respond_to do |format|
-      if @campaign.try(:active?)
+      if @campaign.try(:active?) || current_admin?
         format.json { render json: @campaign }
         format.html
       else
@@ -103,6 +103,26 @@ class CampaignsController < ApplicationController
 
   def finish
     @campaign ||= Campaign.find(params[:id])
+  end
+
+  def submit
+    @campaign ||= Campaign.find(params[:id])
+    respond_to do |format|
+      if @campaign.try(:submit_for_review)
+        format.json { render nothing: true, status: 200 }
+        format.html do
+          flash[:notice] = "Campaign has been submitted for review by administrator. \
+            In the meantime, why don't you check out some other campaigns?"
+          redirect_to campaigns_path
+        end
+      else
+        format.json { render nothing: true, status: 500 }
+        format.html do
+          flash[:notice] = "Uh oh.  Something went wrong!"
+          redirect_to root_path
+        end
+      end
+    end
   end
 
   private

@@ -35,6 +35,7 @@ class Campaign < ActiveRecord::Base
   scope :active, ->() { where(status: "active") }
   scope :completed, ->() { where(status: "completed") }
   scope :canceled, ->() { where(status: "canceled") }
+  scope :in_review, ->() { where(status: "in_review") }
 
   ##########
   # States #
@@ -50,14 +51,16 @@ class Campaign < ActiveRecord::Base
     event :activate do
       transition inactive: :active
     end
-    event :review do
-      transition active: :review
+    event :submit_for_review do
+      transition active: :in_review
     end
     event :approve do
-      transition review: :completed
+      transition in_review: :completed
+      # TODO: pledges.find_each(&:charge!)
+      # TODO: send out a mailer?
     end
     event :deny do
-      transition review: :active
+      transition in_review: :active
     end
     event :complete do
       transition active: :completed

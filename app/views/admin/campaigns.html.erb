@@ -1,0 +1,80 @@
+<h3>Pending campaigns</h3>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th class="col-md-1">ID</th>
+        <th class="col-md-3">Name</th>
+        <th class="col-md-6">Photos</th>
+        <th class="col-md-1"><!-- Approve --></th>
+        <th class="col-md-1"><!-- Deny --></th>
+      </tr>
+      <% @in_review.each do |campaign| %>
+        <tr>
+          <td><%= campaign.id %></td>
+          <td><%= link_to campaign.name.truncate(20), campaign_path(campaign) %></td>
+          <td>
+            <div class="col-xs-12">
+              <% campaign.photos.limit(6).each do |photo| %>
+                <div class="col-xs-1">
+                  <%= link_to photo_path(photo_id: photo.id) do %>
+                    <%= image_tag photo.image.url(:thumb) %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          <td>
+            <%= link_to admin_approve_path(campaign_id: campaign.id), method: "post" do %>
+              <button class="btn btn-success">+</button>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to admin_deny_path(campaign_id: campaign.id), method: "post" do %>
+              <button class="btn btn-danger">X</button>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<h3>Completed campaigns</h3>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th class="col-md-1">ID</th>
+        <th class="col-md-3">Name</th>
+        <th class="col-md-6">Photos</th>
+        <th class="col-md-1"><!-- N/A --></th>
+        <th class="col-md-1"><!-- Cancel --></th>
+      </tr>
+      <% @completed.each do |campaign| %>
+        <tr>
+          <td><%= campaign.id %></td>
+          <td><%= link_to campaign.name.truncate(20), campaign_path(campaign) %></td>
+          <td>
+            <div class="col-xs-12">
+              <% campaign.photos.limit(6).each do |photo| %>
+                <div class="col-xs-1">
+                  <%= link_to photo_path(photo_id: photo.id) do %>
+                    <%= image_tag photo.image.url(:thumb) %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          <td>
+          </td>
+          <td>
+            <%= link_to admin_cancel_path(campaign_id: campaign.id), method: "post" do %>
+              <button class="btn btn-danger">X</button>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
