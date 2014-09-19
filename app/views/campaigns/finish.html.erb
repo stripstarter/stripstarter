@@ -24,7 +24,7 @@
       </tr>
       <% @campaign.photos.each do |photo| %>
         <tr>
-          <td><%= image_tag photo.image(:thumb) %></td>
+          <td><%= image_tag photo_path(photo, style: "thumb") %></td>
           <td>
             <%= link_to photo_destroy_path(photo_id: photo.id), method: "delete" do %>
               <button class="btn btn-danger">X</button>

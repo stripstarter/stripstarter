@@ -38,6 +38,7 @@ gem 'capistrano-sidekiq'
 gem 'configreader'
 gem 'aws-sdk'
 gem 'paperclip'
+gem 'fog'
 gem 'newrelic_rpm'
 gem 'factory_girl_rails', require: false
 gem 'stripe'

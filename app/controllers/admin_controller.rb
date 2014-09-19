@@ -26,7 +26,7 @@ class AdminController < ApplicationController
 
   def cancel
     @campaign = Campaign.find(params[:campaign_id])
-    @campaign.deny!
+    @campaign.cancel!
     respond_to do |format|
       format.json { render nothing: true, status: 200 }
       format.html { redirect_to admin_campaigns_path }

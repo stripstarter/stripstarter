@@ -25,10 +25,8 @@ class PhotosController < ApplicationController
 
   def show
     @photo = Photo.find(params[:photo_id])
-    respond_to do |format|
-      format.html
-      format.json { render json: @photo.to_json }
-    end
+    style = params[:style] || "original"
+    send_file @photo.image.url(style.to_sym).gsub(/\?\d+/,"")
   end
 
   def destroy

@@ -19,7 +19,7 @@
               <% campaign.photos.limit(6).each do |photo| %>
                 <div class="col-xs-1">
                   <%= link_to photo_path(photo_id: photo.id) do %>
-                    <%= image_tag photo.image.url(:thumb) %>
+                    <%= image_tag photo_path(photo, style: "thumb") %>
                   <% end %>
                 </div>
               <% end %>
@@ -61,7 +61,7 @@
               <% campaign.photos.limit(6).each do |photo| %>
                 <div class="col-xs-1">
                   <%= link_to photo_path(photo_id: photo.id) do %>
-                    <%= image_tag photo.image.url(:thumb) %>
+                    <%= image_tag photo_path(photo, style: "thumb") %>
                   <% end %>
                 </div>
               <% end %>
