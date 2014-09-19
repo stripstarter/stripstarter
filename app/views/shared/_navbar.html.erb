@@ -24,10 +24,12 @@
           <%= text_field_tag 'search_box', nil, placeholder: "Search" %>
         </li>
         <% if current_user %>
-          <% unless current_user.stripe_customer_id || current_admin? %>
-            <li><%= link_to "Add Your Card", new_customer_path %></li>
+          <% if current_user.is_a? Pledger %>
+            <% unless current_user.stripe_customer_id || current_admin? %>
+              <li><%= link_to "Add Your Card", new_customer_path %></li>
+            <% end %>
+            <li><%= link_to "My Cart" + pending_pledges, checkout_path %></li>
           <% end %>
-          <li><%= link_to "My Cart" + pending_pledges, checkout_path %></li>
           <li><%= link_to "Profile", user_path(current_user) %></li>
           <li><%= link_to "Logout", logout_path %></li>
           <% if current_admin? %>

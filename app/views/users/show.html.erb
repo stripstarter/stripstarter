@@ -50,39 +50,67 @@
       </div>
     <% end %>
 
-    <% if @user.is_a?(Performer) && !@user.campaigns.blank? %>
-      <div class="row">
-        <h3>
-          <div class="col-md-8">Campaigns</div>
-          <div class="col-md-4"></div>
-        </h3>
-      </div>
-      <br />
-      <div class="row">
-      <div class="col-md-12">
-        <table class="table table-striped">
-          <% @user.campaigns.each do |campaign| %>
-            <tr>
-              <td class="col-md-8"><%= campaign.name %></td>
-              <td class="col-md-2"><%= campaign.amount %></td>
-              <td class="col-md-1">
-                <% if true #@user.id == current_user.try(:id) %>
+    <% if @user.is_a?(Performer) %>
+      <% if !@user.campaigns.active.blank? %>
+        <div class="row">
+          <h3>
+            <div class="col-md-8">Campaigns</div>
+            <div class="col-md-4"></div>
+          </h3>
+        </div>
+        <br />
+        <div class="row">
+        <div class="col-md-12">
+          <table class="table table-striped">
+            <% @user.campaigns.active.each do |campaign| %>
+              <tr>
+                <td class="col-md-8"><%= link_to campaign.name, campaign_path(campaign) %></td>
+                <td class="col-md-2"><%= "$#{campaign.amount}" %></td>
+                <td class="col-md-1">
+                  <% if @user.id == current_user.try(:id) %>
+                    <%= link_to campaign_path(campaign), method: "delete" do %>
+                      <button class="btn btn-danger">X</button>
+                    <% end %>
+                  <% end %>
+                </td>
+                <td class="col-md-1">
+                  <% if @user.id == current_user.try(:id) %>
+                    <%= link_to campaign_finish_path(id: campaign.id) do %>
+                      <button class="btn btn-success">></button>
+                    <% end %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      <% end %>
+      <% if !@user.campaigns.in_review.blank? && ( @user == current_user || current_admin? ) %>
+        <div class="row">
+          <h3>
+            <div class="col-md-8">Campaigns (in review)</div>
+            <div class="col-md-4"></div>
+          </h3>
+        </div>
+        <br />
+        <div class="row">
+        <div class="col-md-12">
+          <table class="table table-striped">
+            <% @user.campaigns.in_review.each do |campaign| %>
+              <tr>
+                <td class="col-md-8"><%= campaign.name %></td>
+                <td class="col-md-2"><%= campaign.amount %></td>
+                <td class="col-md-1">
                   <%= link_to campaign_path(campaign), method: "delete" do %>
                     <button class="btn btn-danger">X</button>
                   <% end %>
-                <% end %>
-              </td>
-              <td class="col-md-1">
-                <% if true #@user.id == current_user.try(:id) %>
-                  <%= link_to campaign_finish_path(id: campaign.id) do %>
-                    <button class="btn btn-success">></button>
-                  <% end %>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </table>
-      </div>
+                </td>
+                <td class="col-md-1"></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>

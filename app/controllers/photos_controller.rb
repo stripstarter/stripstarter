@@ -1,7 +1,7 @@
 class PhotosController < ApplicationController
 
-  before_filter :ensure_performance_exists
-  before_filter :require_admin, only: [:show, :destroy]
+  before_filter :ensure_performance_exists, only: :create
+  before_filter :require_performer_or_admin, only: [:show, :destroy]
 
   def create
     @photo = Photo.new(photo_params)
@@ -24,7 +24,7 @@ class PhotosController < ApplicationController
   end
 
   def show
-    @photo = Photo.find(params[:photo_id])
+    @photo ||= Photo.find(params[:photo_id])
     style = params[:style] || "original"
     send_file @photo.image.url(style.to_sym).gsub(/\?\d+/,"")
   end
@@ -45,6 +45,14 @@ class PhotosController < ApplicationController
 
   def photo_params
     params.require(:photo).permit(:performance_id, :image)
+  end
+
+  def require_performer_or_admin
+    @photo = Photo.find(params[:photo_id])
+    unless current_admin? || @photo.performer == current_user
+      flash[:notice] = "You are not authorized to view this page."
+      redirect_to root_path
+    end
   end
 
   def require_admin
