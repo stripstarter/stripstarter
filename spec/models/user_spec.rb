@@ -43,7 +43,7 @@ RSpec.describe User, :type => :model do
       user = FactoryGirl.create(:user)
       user.avatar = nil
       user.save
-      expect(user.avatar.url).to match(/missing\.png/)
+      expect(user.avatar.url).to match(/missing_original\.png/)
     end
 
     def setup_for_amazon!

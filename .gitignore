@@ -24,3 +24,5 @@
 .vagrant
 
 /vendor/bundle
+dump.rdb
+public/.DS_Store

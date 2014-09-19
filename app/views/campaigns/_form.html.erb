@@ -1,4 +1,4 @@
-<%= form_for(@campaign) do |f| %>
+<%= form_for @campaign, html: {class: "form-horizontal col-md-6", role: "form"} do |f| %>
   <% if @campaign.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@campaign.errors.count, "error") %> prohibited this campaign from being saved:</h2>
@@ -11,11 +11,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <div class="col-md-12">
+      <input name="campaign[name]" type="text" class="form-control" placeholder="Campaign name...">
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <div class="col-sm-6 actions">
+      <input type="submit" value="Create" class="btn btn-success">
+    </div>
   </div>
 <% end %>

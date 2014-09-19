@@ -2,14 +2,24 @@
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
 
-<button>
-  <%= link_to 'New Campaign', new_campaign_path %>
-</button>
+<div class="row">
+  <div class="col-md-8">
+    <div class="col-sm-2">
+      <button class="btn btn-default">
+        <%= link_to 'New Campaign', new_campaign_path %>
+      </button>
+    </div>
 
-<br />
-<br />
-
-<%= text_field_tag 'campaign_search', nil, placeholder: "Find a campaign..." %>
+    <form role="form" class="form-horizontal">
+      <div class="form-group">
+        <label for="campaign_search" class="col-sm-2 control-label">Search</label>
+        <div class="col-sm-6">
+          <input type="text" class="campaign_search form-control" id="campaign_search" placeholder="Find a campaign...">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
 
 <script type="text/javascript">
   $(function() {

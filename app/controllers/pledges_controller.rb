@@ -6,7 +6,7 @@ class PledgesController < ApplicationController
     @pledge = Pledge.new(pledges_params.merge pledger_id: current_user.id)
     if @pledge.save
       respond_to do |format|
-        format.html { redirect_to user_path(current_user) }
+        format.html { redirect_to campaigns_path }
         format.json { render json: @pledge.to_json }
       end
     else
@@ -57,8 +57,9 @@ class PledgesController < ApplicationController
   end
 
   def ensure_pledger_or_admin
-    if !(current_user.is_a?(Pledger) || current_admin?)
-      raise Stripstarter::Error::Unauthorized
+    if !(current_user.try(:is_a?, Pledger) || current_admin?)
+      flash[:notice] = "You must be logged in as a pledger to do that!"
+      redirect_to campaigns_path
     else
       true
     end

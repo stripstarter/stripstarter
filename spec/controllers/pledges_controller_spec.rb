@@ -30,7 +30,7 @@ RSpec.describe PledgesController, :type => :controller do
       post :create,
            pledge: { amount: 100, campaign_id: campaign.id },
            format: :html
-      expect(response).to redirect_to user_path(pledger)
+      expect(response).to redirect_to campaigns_path
     end
 
     it "creates a pledge via JSON" do
@@ -51,7 +51,7 @@ RSpec.describe PledgesController, :type => :controller do
       post :create,
            pledge: { amount: 100, campaign_id: campaign.id },
            format: :html
-      expect(response.status).to eq(500)
+      expect(response).to redirect_to campaigns_path
     end
   end
 

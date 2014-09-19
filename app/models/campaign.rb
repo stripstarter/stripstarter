@@ -47,11 +47,18 @@ class Campaign < ActiveRecord::Base
 
     state :active, value: "active"
     state :inactive, value: "inactive"
+    state :in_review, value: "in_review"
     state :completed, value: "completed"
     state :canceled, value: "canceled"
 
     event :activate do
       transition inactive: :active
+    end
+    event :review do
+      transition active: :review
+    end
+    event :approve do
+      transition review: :completed
     end
     event :deactive do
       transition active: :inactive
@@ -60,7 +67,7 @@ class Campaign < ActiveRecord::Base
       transition active: :completed
     end
     event :cancel do
-      transition [:active, :inactive, :completed] => :canceled
+      transition any: :canceled
     end
     event :renew do
       transition canceled: :active
