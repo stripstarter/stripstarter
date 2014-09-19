@@ -15,6 +15,8 @@ class Campaign < ActiveRecord::Base
 
   belongs_to :owner, class: User
 
+  has_many :photos, through: :performances
+
   def users
     pledgers + performers
   end 

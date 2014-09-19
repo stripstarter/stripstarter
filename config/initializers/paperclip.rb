@@ -1,7 +1,7 @@
 if Rails.env.production? || Rails.env.development?
   Paperclip::Attachment.default_options.merge!(
     :storage => :s3,
-    :path => "/avatar/:id/:style/:filename",
+    :path => "/:attachment/:id/:style/:filename",
     :default_url => "/missing_:style.png",
     :s3_permissions => :public_read,
     :s3_credentials => {
@@ -12,8 +12,8 @@ if Rails.env.production? || Rails.env.development?
   )
 else
   Paperclip::Attachment.default_options.merge!(
-    :url => "/system/avatar/:id/:style/:filename",
-    :path => ":rails_root/public/system/avatar/:id/:style/:filename",
+    :url => "/system/:attachment/:id/:style/:filename",
+    :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
     :default_url => "/missing_:style.png",
   )
 end

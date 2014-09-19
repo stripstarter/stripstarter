@@ -63,6 +63,12 @@ Rails.application.routes.draw do
        as: "confirm_pledge"
   delete "/pledges/:id" => "pledges#destroy"
 
+  ##########
+  # Photos #
+  ##########
+
+  post "/photos" => "photos#create", as: "photos"
+
   ######################
   # Sidekiq Monitoring #
   ######################
