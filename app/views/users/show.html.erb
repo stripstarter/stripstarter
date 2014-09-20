@@ -36,13 +36,17 @@
             <tr>
               <th>Campaign</th>
               <th>Value</th>
-              <th>Delete?</th>
+              <th></th>
             </tr>
             <% @user.pledges.each do |pledge| %>
               <tr>
                 <td><%= pledge.campaign.try(:name) %></td>
                 <td><%= pledge.amount %></td>
-                <td><%= link_to "X", "/pledges/#{pledge.id}", method: :delete, :class => "btn btn-default" %></td>
+                <td>
+                  <%= link_to "/pledges/#{pledge.id}", method: :delete do %>
+                    <button class="btn btn-danger">X</button>
+                  <% end %>
+                </td>
               </tr>
             <% end %>
           </table>

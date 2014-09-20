@@ -56,14 +56,9 @@ class Campaign < ActiveRecord::Base
     end
     event :approve do
       transition in_review: :completed
-      # TODO: pledges.find_each(&:charge!)
-      # TODO: send out a mailer?
     end
     event :deny do
       transition in_review: :active
-    end
-    event :complete do
-      transition active: :completed
     end
     event :cancel do
       transition [:active, :in_review, :completed] => :canceled

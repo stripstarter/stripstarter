@@ -6,7 +6,7 @@
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key=<%= SS_CONFIG.stripe_test_publishable_key %>
-    data-image="/missing.png"
+    data-image=<%= current_user.avatar.url(:thumb) %>
     data-name="Register"
     data-description="Add your card to use Stripstarter"
     data-amount="0">
