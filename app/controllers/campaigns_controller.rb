@@ -25,9 +25,9 @@ class CampaignsController < ApplicationController
         format.json { render json: @campaign }
         format.html
       else
-        format.json { render nothing: true, status: 500 }
+        format.json { render json: @campaign.errors, status: :unprocessable_entity }
         format.html do
-          flash[:notice] = "That campaign doesn't exist!"
+          flash[:notice] = Stripstarter::Response::CAMPAIGN_NOT_FOUND
           redirect_to campaigns_path
         end
       end
@@ -52,8 +52,11 @@ class CampaignsController < ApplicationController
 
     respond_to do |format|
       if @campaign.save
-        format.html { redirect_to @campaign, notice: "Campaign was successfully created." }
-        format.json { render :show, status: :created, location: @campaign }
+        format.html do
+          flash[:notice] = Stripstarter::Response::CAMPAIGN_CREATE_SUCCESS
+          redirect_to @campaign
+        end
+        format.json { render nothing: true, status: 200 }
       else
         format.html { render :new }
         format.json { render json: @campaign.errors, status: :unprocessable_entity }
@@ -67,7 +70,10 @@ class CampaignsController < ApplicationController
     @campaign ||= Campaign.find(params[:id])
     respond_to do |format|
       if @campaign.update(campaign_params)
-        format.html { redirect_to @campaign, notice: "Campaign was successfully updated." }
+        format.html do
+          flash[:notice] = Stripstarter::Response::CAMPAIGN_UPDATE_SUCCESS
+          redirect_to @campaign
+        end
         format.json { render :show, status: :ok, location: @campaign }
       else
         format.html { render :edit }
@@ -92,7 +98,7 @@ class CampaignsController < ApplicationController
           flash[:notice] = Stripstarter::Response::CAMPAIGN_DESTROY_FAILURE
           redirect_to campaigns_path
         end
-        format.json { render nothing: true, status: 500 }
+        format.json { render json: @campaign.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -111,14 +117,13 @@ class CampaignsController < ApplicationController
       if @campaign.try(:submit_for_review)
         format.json { render nothing: true, status: 200 }
         format.html do
-          flash[:notice] = "Campaign has been submitted for review by administrator. \
-            In the meantime, why don't you check out some other campaigns?"
+          flash[:notice] = Stripstarter::Response::CAMPAIGN_SUBMIT_SUCCESS
           redirect_to campaigns_path
         end
       else
-        format.json { render nothing: true, status: 500 }
+        format.json { render json: @campaign.errors, status: :unprocessable_entity }
         format.html do
-          flash[:notice] = "Uh oh.  Something went wrong!"
+          flash[:notice] = Stripstarter::Response::CAMPAIGN_SUBMIT_FAILURE
           redirect_to root_path
         end
       end

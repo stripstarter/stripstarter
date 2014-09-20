@@ -23,13 +23,13 @@ class CheckoutController < ApplicationController
         current_user.save
         format.json { render nothing: true, status: 200 }
         format.html do
-          flash[:notice] = "Success!"
+          flash[:notice] = Stripstarter::Response::CUSTOMER_CREATE_SUCCESS
           redirect_to checkout_path
         end
       rescue
-        format.json { render nothing: true, status: 500 }
+        format.json { render json: current_user.errors, status: :unprocessable_entity }
         format.html do
-          flash[:notice] = "We could not add you at this time!"
+          flash[:notice] = Stripstarter::Response::CUSTOMER_CREATE_FAILURE
           redirect_to root_path
         end
       end
@@ -47,8 +47,7 @@ class CheckoutController < ApplicationController
       @pledge.activate!
       format.json { render nothing: true, status: 200 }      
       format.html do
-        flash[:notice] = "Pledge successful, but you won't \
-          be charged until the campaign completes."
+        flash[:notice] = Stripstarter::Response::PLEDGE_CONFIRM_SUCCESS
         redirect_to checkout_path
       end
     end
@@ -62,8 +61,7 @@ class CheckoutController < ApplicationController
 
   def ensure_stripe_customer_id
     if current_user.try(:stripe_customer_id).nil?
-      flash[:notice] = "We don't have a card for you on file! \
-        Please add one by clicking the button below."
+      flash[:notice] = Stripstarter::Response::NOT_A_CUSTOMER
       redirect_to new_customer_path
     end
   end

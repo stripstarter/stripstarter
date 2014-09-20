@@ -12,7 +12,7 @@ class PledgesController < ApplicationController
     else
       respond_to do |format|
         format.html { render action: "new" }
-        format.json { render nothing: true, status: 500 }
+        format.json { render json: @pledge.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -36,14 +36,13 @@ class PledgesController < ApplicationController
       if @pledge.destroy
         format.json { render nothing: true, status: 200 }
         format.html do
-          flash[:notice] = "Pledge deleted!"
+          flash[:notice] = Stripstarter::Response::PLEDGE_DESTROY_SUCCESS
           redirect_to checkout_path
         end
       else
-        format.json { render nothing:true, status: 500 }
+        format.json { render json: @pledge.errors, status: :unprocessable_entity }
         format.html do
-          flash[:notice] = "Pledge could not be deleted: \
-            #{@pledge.errors.join}"
+          flash[:notice] = Stripstarter::Response::PLEDGE_DESTROY_FAILURE
           redirect_to checkout_path
         end
       end
@@ -58,7 +57,7 @@ class PledgesController < ApplicationController
 
   def ensure_pledger_or_admin
     if !(current_user.try(:is_a?, Pledger) || current_admin?)
-      flash[:notice] = "You must be logged in as a pledger to do that!"
+      flash[:notice] = Stripstarter::Response::UNAUTHORIZED_ACTION
       redirect_to campaigns_path
     else
       true
@@ -68,7 +67,7 @@ class PledgesController < ApplicationController
   def ensure_owner
     @pledge = Pledge.find(params[:id])
     if current_user != @pledge.pledger
-      flash[:notice] = "You are not authorized to perform that action"
+      flash[:notice] = Stripstarter::Response::UNAUTHORIZED_ACTION
       redirect_to root_path
     end
   end

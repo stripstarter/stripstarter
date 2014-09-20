@@ -14,7 +14,7 @@ class PhotosController < ApplicationController
           redirect_to campaign_finish_path(params[:campaign_id])
         end
       else
-        format.json { render nothing: true, status: 500 }
+        format.json { render json: @photo.errors, status: :unprocessable_entity }
         format.html do
           flash[:notice] = Stripstarter::Response::PHOTO_CREATE_FAILURE
           redirect_to campaign_finish_path(params[:campaign_id])
@@ -35,7 +35,7 @@ class PhotosController < ApplicationController
     respond_to do |format|
       format.json { render nothing: true, status: 200 }
       format.html do
-        flash[:notice] = "Photo destroyed."
+        flash[:notice] = Stripstarter::Response::PHOTO_DESTROY_SUCCESS
         redirect_to campaign_finish_path(@photo.campaign)
       end
     end
@@ -50,7 +50,7 @@ class PhotosController < ApplicationController
   def require_performer_or_admin
     @photo = Photo.find(params[:photo_id])
     unless current_admin? || @photo.performer == current_user
-      flash[:notice] = "You are not authorized to view this page."
+      flash[:notice] = Stripstarter::Response::UNAUTHORIZED_ACTION
       redirect_to root_path
     end
   end
