@@ -1,6 +1,6 @@
 # Stripstarter
 
-[![Build Status](https://travis-ci.org/stripstarter/stripstarter.png)](https://travis-ci.org/stripstarter/stripstarter)
+[![Build Status](https://travis-ci.org/stripstarter/stripstarter.png)](https://travis-ci.org/stripstarter/stripstarter) [![Code Climate](https://codeclimate.com/github/stripstarter/stripstarter/badges/gpa.svg)](https://codeclimate.com/github/stripstarter/stripstarter)
 
 ## About
 
