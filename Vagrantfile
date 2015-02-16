@@ -19,7 +19,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # config.vm.box_check_update = false
-  config.vm.network "forwarded_port", guest: 3000, host: 8080
+  config.vm.network "forwarded_port", guest: 3000, host: 8081
   # config.ssh.private_key_path = "~/.ssh/id_rsa"
   config.ssh.forward_agent = true
 
