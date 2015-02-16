@@ -15,6 +15,23 @@
  *= require bootstrap_and_overrides
  */
 
+/**
+* Nav-bar overrides
+*/
+
+.navbar-logo {
+  background-image: url("../images/logo_v1.png");
+ }
+
+.navbar {
+  background-color: #ff7871;
+  border-color: #ff7871;
+ }
+
+.navbar-nav > .active > a {
+  background-color: #ff7871;
+ }
+
 
 img.search-result {
   height: 20px;
