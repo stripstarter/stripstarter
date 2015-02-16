@@ -28,9 +28,15 @@
   border-color: #ff7871;
  }
 
-.navbar-nav > .active > a {
+.navbar-default .navbar-nav > li > a {
   background-color: #ff7871;
- }
+  color: #fec2be;
+}
+
+.navbar-default .navbar-nav > .active > a {
+  background-color: #ff7871;
+  color: #fec2be;
+}
 
 
 img.search-result {
