@@ -22,7 +22,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'pg'
 gem 'capistrano', '~> 2.15.0'
-gem 'rvm-capistrano'
+gem 'rvm-capistrano', require: false
 gem 'authlogic'
 gem 'bcrypt', '~> 3.1.7'
 gem 'state_machine'
