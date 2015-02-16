@@ -42,6 +42,7 @@ gem 'fog'
 gem 'newrelic_rpm'
 gem 'factory_girl_rails', require: false
 gem 'stripe'
+gem 'rails-observers'
 
 group :development, :test do
   gem 'pry'
