@@ -1,0 +1,9 @@
+/*http://tympanus.net/codrops/2015/02/16/create-animated-text-fills/*/
+
+div.box-with-text {
+  background-image: -webkit-linear-gradient(transparent, transparent),
+                    url(http://i.imgur.com/XAFh6Y5.png);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  font: bold 15vmax/.8 Open Sans, Impact;
+}
