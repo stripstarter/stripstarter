@@ -93,6 +93,10 @@ namespace :ss do
       default_run_options[:shell] = '/bin/bash --login'
       run "god -c /var/www/blog/monitoring/keepalive.god"
     end
+    task :shim, roles: :app do
+      default_run_options[:shell] = '/bin/bash --login'
+      run "cd /var/www/blog && jekyll serve --watch"
+    end
   end
 
   namespace :soulmate do
