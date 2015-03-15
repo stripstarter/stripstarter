@@ -1,0 +1,19 @@
+/* Main styles */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:800);
+
+.logo-test {
+  fill: url(#p-fire);
+  font: 3em/1 Open Sans, Impact;
+  text-transform: uppercase;
+}
+
+/* Other styles */
+html, body {
+  height: 100%;
+}
+
+svg {
+  /*position: absolute;*/
+  width: 100%;
+  /*height: 100%;*/
+}
